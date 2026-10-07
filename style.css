@@ -1,13 +1,13 @@
 /* Design Tokens */
 :root {
-    /* Colors based on latest screenshots */
+    /* Colors based on new logo */
     --color-bg: #f8fafc;
-    --color-text-main: #111827;
+    --color-text-main: #1b1e2c;
     --color-text-muted: #6b7280;
-    --color-blue: #0284c7;
-    --color-blue-dark: #0f172a;
-    --color-banner-bg: #e0f2fe;
-    --color-badge-bg: #dbeafe;
+    --color-blue: #e60000; /* Red from logo */
+    --color-blue-dark: #1b1e2c; /* Navy from logo */
+    --color-banner-bg: #fff0f0;
+    --color-badge-bg: #ffe4e4;
     
     --color-border: #e5e7eb;
     
