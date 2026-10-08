@@ -357,19 +357,20 @@ img {
 .small-list-card {
     display: flex;
     gap: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
     align-items: center;
 }
 
-.small-list-card:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.list-divider {
+    height: 1px;
+    background-color: var(--color-border);
+    width: 100%;
 }
 
+
+
 .small-card-image {
-    width: 220px;
-    height: 150px;
+    width: 260px;
+    height: 160px;
     flex-shrink: 0;
     border-radius: var(--radius-sm);
     overflow: hidden;
@@ -393,7 +394,7 @@ img {
 }
 
 .small-card-eyebrow {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-blue);
     text-transform: uppercase;
@@ -402,10 +403,10 @@ img {
 }
 
 .small-card-content h4 {
-    font-size: 1.125rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--color-blue-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     line-height: 1.3;
 }
 
