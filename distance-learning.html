@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The edYOUcate Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                The ed<span>YOU</span>cate Blog
+            </a>
+            <nav class="main-nav">
+                <a href="#">STORIES</a>
+                <a href="nios.html">NIOS</a>
+                <a href="distance-learning.html">DISTANCE LEARNING</a>
+                <a href="prapti-tourism.html">PRAPTI TOURISM</a>
+                <a href="#">ABOUT US</a>
+                <a href="#" class="nav-link-icon">OUR OUTLOOK <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Category Header -->
+    <main class="category-page">
+        <section class="category-header">
+            <div class="container">
+                <div class="header-content">
+                    <div>
+                        <h1>Distance Learning<span class="highlight-blue">.</span></h1>
+                        <p>Explore our latest stories, insights, and ideas on distance learning without the fluff.</p>
+                    </div>
+                    <div class="sorting-options custom-dropdown">
+                        <button class="dropdown-toggle" id="sortDropdown">
+                            Sort by: Newest First 
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="dropdown-item active" data-value="newest">Sort by: Newest First</button></li>
+                            <li><button class="dropdown-item" data-value="oldest">Sort by: Oldest First</button></li>
+                            <li><button class="dropdown-item" data-value="popular">Sort by: Most Popular</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Grid -->
+        <section class="category-grid-section">
+            <div class="container">
+                <div class="category-grid">
+                    
+                    <!-- Card 1 -->
+                    <article class="cat-card">
+                        <div class="cat-image">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student studying">
+                        </div>
+                        <div class="cat-meta-row">
+                            <span class="cat-read-time">5 MIN READ</span>
+                        </div>
+                        <h3><a href="story.html">Stop studying. Start learning.</a></h3>
+                        <p>A better way to remember what matters, without spending another night staring at the same page.</p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="cat-card">
+                        <div class="cat-image">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students together">
+                        </div>
+                        <div class="cat-meta-row">
+                            <span class="cat-read-time">7 MIN READ</span>
+                        </div>
+                        <h3><a href="story.html">The power of asking better questions.</a></h3>
+                        <p>The smartest person in the room might be the one brave enough to say, 'Wait, why?'</p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="cat-card">
+                        <div class="cat-image">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student looking away">
+                        </div>
+                        <div class="cat-meta-row">
+                            <span class="cat-read-time">5 MIN READ</span>
+                        </div>
+                        <h3><a href="story.html">Your path doesn't need a map.</a></h3>
+                        <p>On changing direction, starting over, and being more than a five-year plan.</p>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="cat-card">
+                        <div class="cat-image">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student class">
+                        </div>
+                        <div class="cat-meta-row">
+                            <span class="cat-read-time">4 MIN READ</span>
+                        </div>
+                        <h3><a href="story.html">Learning looks different now. Good.</a></h3>
+                        <p>The old rules were never made for everyone. It's time to make room for a different kind of learner.</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Reminder Banner -->
+    <section class="reminder-banner">
+        <div class="container reminder-inner">
+            <div class="reminder-content">
+                <span class="eyebrow">A LITTLE REMINDER</span>
+                <h2>YOU DON'T HAVE TO HAVE IT ALL FIGURED OUT<span class="highlight-blue">.</span></h2>
+            </div>
+            <a href="#" class="btn-link">ABOUT US <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    The ed<span>YOU</span>cate Blog
+                </a>
+                <p>A space for curious minds, fresh perspectives, and<br>conversations about learning that actually matter.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">ALL STORIES <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                <a href="#">EXPLORE THE BLOG <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
