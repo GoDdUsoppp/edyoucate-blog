@@ -148,7 +148,7 @@ img {
    Site Header & Navigation
    ========================================================================== */
 .site-header {
-    padding: 0.85rem 0;
+    padding: 0.6rem 0;
     background-color: rgba(248, 250, 252, 0.95);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -157,16 +157,20 @@ img {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(229, 231, 235, 0.7);
-    transition: background-color 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
     width: 100%;
     max-width: 100%;
+}
+
+.site-header.header-hidden {
+    transform: translateY(-100%);
 }
 
 .site-header.scrolled {
     background-color: rgba(255, 255, 255, 0.96);
     border-bottom-color: rgba(229, 231, 235, 0.9);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    padding: 0.65rem 0;
+    padding: 0.48rem 0;
 }
 
 .header-inner {
@@ -193,11 +197,21 @@ img {
 }
 
 .site-logo-img {
-    height: 42px;
+    height: 38px;
     width: auto;
     max-width: 175px;
     object-fit: contain;
     display: block;
+}
+
+@media (max-width: 640px) {
+    .site-header {
+        padding: 0.5rem 0;
+    }
+    .site-logo-img {
+        height: 35px;
+        max-width: 155px;
+    }
 }
 
 .site-logo-badge {

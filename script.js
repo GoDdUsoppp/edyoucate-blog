@@ -1,27 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
-    // 1. Sticky Header - Appears & remains visible whenever user scrolls
+    // 1. Smart Header - Slides out of the way on scroll down, reappears on scroll up
     // =========================================================================
+    let lastScrollY = window.scrollY;
     const header = document.querySelector('.site-header');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileNavDrawer = document.getElementById('mobileNavDrawer');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     const mobileNavClose = document.getElementById('mobileNavClose');
 
-    function handleHeaderScroll() {
+    window.addEventListener('scroll', () => {
         if (!header) return;
-        // Never hide the menubar on scroll; keep it visible and sticky
-        header.classList.remove('header-hidden');
 
-        if (window.scrollY > 15) {
-            header.classList.add('scrolled');
-        } else {
+        // Never hide header when mobile drawer menu is open
+        if (mobileNavDrawer && mobileNavDrawer.classList.contains('active')) {
+            return;
+        }
+
+        const currentScrollY = window.scrollY;
+
+        // Near top of page: always visible without shadow
+        if (currentScrollY <= 15) {
+            header.classList.remove('header-hidden');
             header.classList.remove('scrolled');
         }
-    }
+        // Scrolling down: hide menubar so it doesn't get stuck over page content
+        else if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            header.classList.add('header-hidden');
+        }
+        // Scrolling up: smoothly reappear with subtle shadow
+        else if (currentScrollY < lastScrollY) {
+            header.classList.remove('header-hidden');
+            header.classList.add('scrolled');
+        }
 
-    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-    handleHeaderScroll();
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 
     // =========================================================================
     // 2. Mobile Navigation Drawer
