@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The edYOUcate Blog</title>
+    <title>Distance Learning - The edYOUcate Blog</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,19 +15,67 @@
     <!-- Header -->
     <header class="site-header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                The ed<span>YOU</span>cate Blog
+            <a href="index.html" class="site-logo-link" aria-label="The edYOUcate Blog">
+                <img src="logo.png" alt="The edYOUcate Blog" class="site-logo-img">
+                <span class="site-logo-badge">BLOG</span>
             </a>
-            <nav class="main-nav">
-                <a href="#">STORIES</a>
+            <nav class="main-nav" id="desktopNav">
+                <a href="index.html#stories">STORIES</a>
                 <a href="nios.html">NIOS</a>
-                <a href="distance-learning.html">DISTANCE LEARNING</a>
+                <a href="distance-learning.html" class="active">DISTANCE LEARNING</a>
                 <a href="prapti-tourism.html">PRAPTI TOURISM</a>
-                <a href="#">ABOUT US</a>
-                <a href="#" class="nav-link-icon">OUR OUTLOOK <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                <a href="#about">ABOUT US</a>
+                <a href="https://edyoucate.in" target="_blank" rel="noopener noreferrer" class="nav-link-icon">OUR OUTLOOK <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
             </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer & Backdrop Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="site-logo-link mobile-drawer-logo" aria-label="The edYOUcate Blog">
+                <img src="logo.png" alt="The edYOUcate Blog" class="site-logo-img">
+                <span class="site-logo-badge">BLOG</span>
+            </a>
+            <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html#stories" class="mobile-nav-link">
+                <span>All Stories</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="nios.html" class="mobile-nav-link">
+                <span>NIOS</span>
+                <span class="nav-pill">Category</span>
+            </a>
+            <a href="distance-learning.html" class="mobile-nav-link active">
+                <span>Distance Learning</span>
+                <span class="nav-pill">Category</span>
+            </a>
+            <a href="prapti-tourism.html" class="mobile-nav-link">
+                <span>Prapti Tourism</span>
+                <span class="nav-pill">Category</span>
+            </a>
+            <a href="#about" class="mobile-nav-link">
+                <span>About Us</span>
+            </a>
+            <a href="https://edyoucate.in" target="_blank" rel="noopener noreferrer" class="mobile-nav-link external-link">
+                <span>Our Outlook</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+        </nav>
+        <div class="mobile-nav-footer">
+            <p>Curious minds, fresh perspectives, and conversations about learning that matter.</p>
+        </div>
+    </aside>
 
     <!-- Category Header -->
     <main class="category-page">
@@ -38,14 +87,14 @@
                         <p>Explore our latest stories, insights, and ideas on distance learning without the fluff.</p>
                     </div>
                     <div class="sorting-options custom-dropdown">
-                        <button class="dropdown-toggle" id="sortDropdown">
+                        <button class="dropdown-toggle" id="sortDropdown" aria-haspopup="true" aria-expanded="false">
                             Sort by: Newest First 
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><button class="dropdown-item active" data-value="newest">Sort by: Newest First</button></li>
-                            <li><button class="dropdown-item" data-value="oldest">Sort by: Oldest First</button></li>
-                            <li><button class="dropdown-item" data-value="popular">Sort by: Most Popular</button></li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><button class="dropdown-item active" data-value="newest" role="menuitem">Sort by: Newest First</button></li>
+                            <li><button class="dropdown-item" data-value="oldest" role="menuitem">Sort by: Oldest First</button></li>
+                            <li><button class="dropdown-item" data-value="popular" role="menuitem">Sort by: Most Popular</button></li>
                         </ul>
                     </div>
                 </div>
@@ -63,6 +112,7 @@
                             <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student studying">
                         </div>
                         <div class="cat-meta-row">
+                            <span class="cat-eyebrow">DISTANCE LEARNING</span>
                             <span class="cat-read-time">5 MIN READ</span>
                         </div>
                         <h3><a href="story.html">Stop studying. Start learning.</a></h3>
@@ -75,6 +125,7 @@
                             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students together">
                         </div>
                         <div class="cat-meta-row">
+                            <span class="cat-eyebrow">DISTANCE LEARNING</span>
                             <span class="cat-read-time">7 MIN READ</span>
                         </div>
                         <h3><a href="story.html">The power of asking better questions.</a></h3>
@@ -87,6 +138,7 @@
                             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student looking away">
                         </div>
                         <div class="cat-meta-row">
+                            <span class="cat-eyebrow">DISTANCE LEARNING</span>
                             <span class="cat-read-time">5 MIN READ</span>
                         </div>
                         <h3><a href="story.html">Your path doesn't need a map.</a></h3>
@@ -99,6 +151,7 @@
                             <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student class">
                         </div>
                         <div class="cat-meta-row">
+                            <span class="cat-eyebrow">DISTANCE LEARNING</span>
                             <span class="cat-read-time">4 MIN READ</span>
                         </div>
                         <h3><a href="story.html">Learning looks different now. Good.</a></h3>
@@ -110,30 +163,465 @@
         </section>
     </main>
 
-
     <!-- Reminder Banner -->
-    <section class="reminder-banner">
+    <section class="reminder-banner" id="about">
         <div class="container reminder-inner">
             <div class="reminder-content">
                 <span class="eyebrow">A LITTLE REMINDER</span>
                 <h2>YOU DON'T HAVE TO HAVE IT ALL FIGURED OUT<span class="highlight-blue">.</span></h2>
             </div>
-            <a href="#" class="btn-link">ABOUT US <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            <a href="https://edyoucate.in" target="_blank" rel="noopener noreferrer" class="btn-link">ABOUT US <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <a href="#" class="logo">
-                    The ed<span>YOU</span>cate Blog
-                </a>
-                <p>A space for curious minds, fresh perspectives, and<br>conversations about learning that actually matter.</p>
+    <!-- =========================================================================
+         FAQ & Multi-Business Questionnaire Section
+         ========================================================================= -->
+    <section class="faq-consult-section" id="faq-consultation">
+        <div class="container">
+            <div class="faq-consult-grid">
+                <!-- Left Column: Interactive FAQ Accordion -->
+                <div class="faq-column">
+                    <div class="faq-header-block">
+                        <span class="section-tag-pill"><i class="fa-solid fa-circle-question"></i> COMMON QUESTIONS</span>
+                        <h2>Everything You Need to Know</h2>
+                        <p>Quick answers about NIOS Open Schooling, UGC-DEB recognized Distance Learning, and Prapti Tourism student journeys.</p>
+                    </div>
+
+                    <div class="faq-accordion-list" role="region" aria-label="Frequently Asked Questions">
+                        <!-- FAQ 1: Distance Learning UGC-DEB Approval -->
+                        <div class="faq-item active">
+                            <button class="faq-question-btn" aria-expanded="true">
+                                <span>Are Distance & Online Degrees recognized for government jobs and higher studies?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse" style="max-height: 250px;">
+                                <div class="faq-answer-inner">
+                                    Yes, 100%. All university programs we guide students toward (B.A., B.Com, BBA, BCA, MBA, MCA, M.Com, MA) are UGC-DEB approved and AICTE recognized. As per UGC gazette notifications, online and distance degrees carry equal legal validity as on-campus regular degrees.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2: Distance Learning for Working Adults -->
+                        <div class="faq-item">
+                            <button class="faq-question-btn" aria-expanded="false">
+                                <span>Can working professionals pursue a degree without attending offline classes?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse">
+                                <div class="faq-answer-inner">
+                                    Absolutely. Our programs provide digital learning portals, recorded lectures, weekend doubt-clearing sessions, and local examination options, enabling working adults to earn accredited degrees at their own pace without quitting their jobs.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3: NIOS Eligibility & Validity -->
+                        <div class="faq-item">
+                            <button class="faq-question-btn" aria-expanded="false">
+                                <span>Who is eligible for NIOS 10th & 12th, and are marks valid for colleges & NEET/JEE?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse">
+                                <div class="faq-answer-inner">
+                                    Anyone aged 14+ can enroll for Class 10th, and 10th-passed students (or those transferring from CBSE/GSEB/ICSE) can join Class 12th. NIOS is an autonomous National Board under the Ministry of Education, Govt. of India. Its certificates are completely valid for NEET, JEE, UPSC, university admissions, and all government & private jobs.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4: NIOS On-Demand & Failed Students -->
+                        <div class="faq-item">
+                            <button class="faq-question-btn" aria-expanded="false">
+                                <span>Can failed or dropout students save their year through NIOS Stream 2 & ODE?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse">
+                                <div class="faq-answer-inner">
+                                    Yes! Under NIOS Stream 2 and On-Demand Examination (ODE), students who did not pass in CBSE, ICSE, or State Boards can transfer marks of up to 2 passed subjects (TOC) and appear only for the remaining subjects to save their academic year without delay.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5: Prapti Tourism Tours -->
+                        <div class="faq-item">
+                            <button class="faq-question-btn" aria-expanded="false">
+                                <span>What types of educational and group tours does Prapti Tourism organize?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse">
+                                <div class="faq-answer-inner">
+                                    Prapti Tourism curates specialized school and college industrial visits, science excursions, national heritage explorations, adventure youth camps, and customized group tour packages with full safety standards, verified stays, and expert guides.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 6: Custom Tour Itinerary -->
+                        <div class="faq-item">
+                            <button class="faq-question-btn" aria-expanded="false">
+                                <span>How can schools, colleges, or groups request a custom tour package?</span>
+                                <span class="faq-icon-wrapper"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer-collapse">
+                                <div class="faq-answer-inner">
+                                    Simply select 'Prapti Tourism' in our quick consultation form on the right, enter your preferred dates and student count, and submit. Our travel counselors will instantly get in touch via WhatsApp with a tailor-made itinerary and group quotation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Multi-Business Questionnaire Form -->
+                <div class="consultation-column" id="consultation-card">
+                    <div class="consultation-card">
+                        <!-- Card Header with Badges & Trust Micro-Tags -->
+                        <div class="consult-header">
+                            <div class="consult-badge-row">
+                                <span class="consult-badge"><i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Guidance</span>
+                            </div>
+                            <h3 class="consult-title">Get Free Degree Guidance</h3>
+                            <p class="consult-desc">Select your domain below to receive direct guidance and university fee structures on WhatsApp.</p>
+                        </div>
+
+                        <!-- 1. Interactive Service Selector Tabs (Distance | NIOS | Prapti Tourism) -->
+                        <div class="service-selector-label">
+                            <span>Choose Service Category</span>
+                            <span class="selector-hint-pill" id="selectedServiceHint">UGC-DEB Approved Online & Distance Degrees</span>
+                        </div>
+                        
+                        <div class="service-tabs-grid" role="tablist" aria-label="Select Consultation Domain">
+                            <!-- Tab 1: NIOS -->
+                            <button type="button" class="service-tab-card" data-service="nios" role="tab" aria-selected="false">
+                                <div class="service-tab-icon-box icon-nios">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div class="service-tab-info">
+                                    <span class="service-tab-title">NIOS Schooling</span>
+                                    <span class="service-tab-subtitle">Class 10th & 12th</span>
+                                </div>
+                                <span class="service-tab-tag">Board Exams</span>
+                            </button>
+
+                            <!-- Tab 2: Distance Learning (Active on this page) -->
+                            <button type="button" class="service-tab-card active" data-service="distance" role="tab" aria-selected="true">
+                                <div class="service-tab-icon-box icon-distance">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+                                <div class="service-tab-info">
+                                    <span class="service-tab-title">Distance Degree</span>
+                                    <span class="service-tab-subtitle">BA, B.Com, MBA, BCA</span>
+                                </div>
+                                <span class="service-tab-tag">UGC-DEB</span>
+                            </button>
+
+                            <!-- Tab 3: Prapti Tourism -->
+                            <button type="button" class="service-tab-card" data-service="tourism" role="tab" aria-selected="false">
+                                <div class="service-tab-icon-box icon-tourism">
+                                    <i class="fa-solid fa-plane-departure"></i>
+                                </div>
+                                <div class="service-tab-info">
+                                    <span class="service-tab-title">Prapti Tourism</span>
+                                    <span class="service-tab-subtitle">Tours & Field Trips</span>
+                                </div>
+                                <span class="service-tab-tag">Group Travel</span>
+                            </button>
+                        </div>
+
+                        <!-- Hidden select for form submission sync -->
+                        <select id="consultService" name="service" class="sr-only" aria-hidden="true">
+                            <option value="nios">NIOS Open Schooling (Class 10th & 12th)</option>
+                            <option value="distance" selected>Distance & Online Degree (UG / PG / Diploma)</option>
+                            <option value="tourism">Prapti Tourism (Educational & Group Tours)</option>
+                        </select>
+
+                        <form id="consultationForm" class="consult-form" novalidate>
+                            <div class="consult-row-two">
+                                <div class="form-group">
+                                    <label for="consultName">Your Full Name <span class="required-star">*</span></label>
+                                    <div class="input-icon-wrapper">
+                                        <span class="input-prefix-icon"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" id="consultName" name="name" class="form-control with-icon" placeholder="e.g. Rahul Sharma" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="consultPhone">WhatsApp Number <span class="required-star">*</span></label>
+                                    <div class="input-icon-wrapper">
+                                        <span class="input-prefix-icon icon-wa"><i class="fa-brands fa-whatsapp"></i></span>
+                                        <input type="tel" id="consultPhone" name="phone" class="form-control with-icon" placeholder="e.g. 98XXXXXXXX" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label-with-hint">
+                                    <label for="consultRequirement" id="requirementLabel">Select Degree / Course Level <span class="required-star">*</span></label>
+                                    <span class="field-info-text" id="requirementHint">Study While Working · Approved Degrees</span>
+                                </div>
+                                <div class="input-icon-wrapper">
+                                    <span class="input-prefix-icon" id="requirementPrefixIcon"><i class="fa-solid fa-building-columns"></i></span>
+                                    <select id="consultRequirement" name="requirement" class="form-control with-icon" required>
+                                        <!-- Populated dynamically via JS -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="consult-row-two">
+                                <div class="form-group">
+                                    <label for="consultCity">Your City / State</label>
+                                    <div class="input-icon-wrapper">
+                                        <span class="input-prefix-icon"><i class="fa-solid fa-location-dot"></i></span>
+                                        <input type="text" id="consultCity" name="city" class="form-control with-icon" placeholder="e.g. Surat, Mumbai, Delhi">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="consultMessage">Specific Questions (Optional)</label>
+                                    <div class="input-icon-wrapper">
+                                        <span class="input-prefix-icon"><i class="fa-solid fa-comment-dots"></i></span>
+                                        <input type="text" id="consultMessage" name="message" class="form-control with-icon" placeholder="Stream, degree or specializations...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="consult-submit-btn" id="consultSubmitBtn">
+                                <span class="btn-wa-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                                <span class="btn-text-content">
+                                    <span class="btn-main-text" id="btnMainText">Explore Distance Degrees on WhatsApp</span>
+                                    <span class="btn-sub-text">Direct counseling · Free consultation</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-right btn-arrow-icon"></i>
+                            </button>
+
+                            <div class="consult-footer-meta">
+                                <span><i class="fa-solid fa-shield-halved"></i> 100% Privacy Protected</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-circle-check"></i> Official EDYOUCATE Study Center</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#">ALL STORIES <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                <a href="#">EXPLORE THE BLOG <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         Site Footer with WhatsApp Channel Card & Office Details
+         ========================================================================= -->
+    <footer id="contact-us" class="site-main-footer">
+        <div class="footer-wa-card-container">
+            <!-- 1. FULL WIDTH WHATSAPP CARD -->
+            <div class="footer-whatsapp-card">
+                <div class="footer-wa-grid">
+                    <!-- Left: Content & Features -->
+                    <div class="footer-wa-content">
+                        <div>
+                            <span class="footer-wa-tag">STAY UPDATED · FREE FOREVER</span>
+                            <h3 class="footer-wa-heading">
+                                Education Updates <span class="wa-text-green">at Your Fingertips!</span>
+                            </h3>
+                            <p class="footer-wa-desc">
+                                Latest news, alerts, results, admissions & more — straight to your WhatsApp. Stay informed without searching multiple websites.
+                            </p>
+                        </div>
+
+                        <!-- Feature Grid & Button Row -->
+                        <div class="footer-wa-features-cta">
+                            <div class="footer-wa-features-grid">
+                                <ul class="footer-wa-list">
+                                    <li><span class="wa-bullet"></span>Admission alerts</li>
+                                    <li><span class="wa-bullet"></span>Scholarship updates</li>
+                                    <li><span class="wa-bullet"></span>University admissions</li>
+                                    <li><span class="wa-bullet"></span>Open schooling updates</li>
+                                </ul>
+                                <ul class="footer-wa-list">
+                                    <li><span class="wa-bullet"></span>Entrance exams</li>
+                                    <li><span class="wa-bullet"></span>Results</li>
+                                    <li><span class="wa-bullet"></span>Career guidance tips</li>
+                                    <li><span class="wa-bullet"></span>Online & distance degrees</li>
+                                </ul>
+                            </div>
+
+                            <!-- Social Proof & Button -->
+                            <div class="footer-wa-action-col">
+                                <div class="footer-wa-social-proof">
+                                    <div class="footer-avatar-stack">
+                                        <div class="footer-avatar bg-blue">A</div>
+                                        <div class="footer-avatar bg-green">P</div>
+                                        <div class="footer-avatar bg-red">R</div>
+                                    </div>
+                                    <span class="footer-avatar-text">5,000+ students joined</span>
+                                </div>
+
+                                <a href="https://whatsapp.com/channel/0029Va6AaecHVvThA8mhvO3O" target="_blank" rel="noopener noreferrer" class="footer-wa-btn">
+                                    <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Channel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: QR Code -->
+                    <div class="footer-wa-qr-card">
+                        <div class="footer-wa-qr-img-box">
+                            <img src="qr-code.png" alt="WhatsApp QR Code" class="footer-wa-qr-img" width="128" height="128">
+                        </div>
+                        <p class="footer-wa-qr-prompt">Scan to follow instantly</p>
+                        <div class="footer-wa-stats">
+                            <div class="footer-wa-stat">
+                                <div class="footer-wa-stat-val">5K+</div>
+                                <div class="footer-wa-stat-label">Members</div>
+                            </div>
+                            <div class="footer-wa-stat">
+                                <div class="footer-wa-stat-val">Daily</div>
+                                <div class="footer-wa-stat-label">Updates</div>
+                            </div>
+                            <div class="footer-wa-stat">
+                                <div class="footer-wa-stat-val">Free</div>
+                                <div class="footer-wa-stat-label">Forever</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-main-container">
+            <div class="footer-divider"></div>
+
+            <!-- 3-COLUMN PROFESSIONAL FOOTER LAYOUT (Ratings cards removed) -->
+            <div class="footer-columns-grid">
+                <!-- COLUMN 1: Brand & Socials -->
+                <div class="footer-col-brand">
+                    <a href="index.html" class="footer-brand-header" aria-label="The edYOUcate Blog">
+                        <div class="footer-logo-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="footer-brand-title">ed<span>YOU</span>cate</span>
+                    </a>
+                    <p class="footer-brand-text">
+                        The edYOUcate Blog is your dedicated educational publication — featuring inspiring student journeys, comprehensive NIOS Open Schooling guides, accredited Distance Degree insights, and transformative learning opportunities.
+                    </p>
+
+                    <!-- Social Icons -->
+                    <div class="footer-social-icons">
+                        <a href="https://www.facebook.com/edyoucategroup" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn hover-fb">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/edyoucate_group" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-btn hover-insta">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/918866230077" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social-btn hover-wa">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: Quick Links for Blog Website -->
+                <div class="footer-col-links">
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-nav-list">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa-solid fa-angle-right"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#stories">
+                                <i class="fa-solid fa-angle-right"></i> All Stories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nios.html">
+                                <i class="fa-solid fa-angle-right"></i> NIOS Open Schooling
+                            </a>
+                        </li>
+                        <li>
+                            <a href="distance-learning.html">
+                                <i class="fa-solid fa-angle-right"></i> Distance Learning
+                            </a>
+                        </li>
+                        <li>
+                            <a href="prapti-tourism.html">
+                                <i class="fa-solid fa-angle-right"></i> Prapti Tourism
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq-consultation">
+                                <i class="fa-solid fa-angle-right"></i> FAQs & Guidance
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#consultation-card">
+                                <i class="fa-solid fa-angle-right"></i> Free Consultation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="story.html">
+                                <i class="fa-solid fa-angle-right"></i> Featured Story
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLUMN 3: Contact & Addresses -->
+                <div class="footer-col-offices">
+                    <h4 class="footer-col-title">Our Offices</h4>
+                    <div class="footer-offices-stack">
+                        <!-- Head Office -->
+                        <div class="footer-office-item">
+                            <div class="footer-office-icon icon-red">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="footer-office-details">
+                                <h5 class="footer-office-name">Head Office</h5>
+                                <p class="footer-office-address">
+                                    C-1 Purnima Society, Near Kotak House, Ghod Dod Road, Surat - 395007
+                                </p>
+                                <div class="footer-office-contacts">
+                                    <a href="tel:08866230077" class="footer-contact-link contact-phone">
+                                        <i class="fa-solid fa-phone"></i> 08866230077
+                                    </a>
+                                    <a href="mailto:info@edyoucate.in" class="footer-contact-link contact-email">
+                                        <i class="fa-solid fa-envelope"></i> info@edyoucate.in
+                                    </a>
+                                </div>
+                                <a href="https://maps.app.goo.gl/oRPEFrDHeb4Z3Age9?g_st=aw" target="_blank" rel="noopener noreferrer" class="footer-directions-link">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Branch Office -->
+                        <div class="footer-office-item">
+                            <div class="footer-office-icon icon-gold">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div class="footer-office-details">
+                                <h5 class="footer-office-name">Branch Office</h5>
+                                <p class="footer-office-address">
+                                    441, 4th Floor Kashi Plaza, Kamrej Char Rasta, Kamrej, Surat - 394180
+                                </p>
+                                <div class="footer-office-contacts">
+                                    <a href="tel:08866230088" class="footer-contact-link contact-phone">
+                                        <i class="fa-solid fa-phone"></i> 08866230088
+                                    </a>
+                                    <a href="mailto:info@edyoucate.in" class="footer-contact-link contact-email">
+                                        <i class="fa-solid fa-envelope"></i> info@edyoucate.in
+                                    </a>
+                                </div>
+                                <a href="https://maps.app.goo.gl/X7Ag2g1hBkKX4fK68?g_st=aw" target="_blank" rel="noopener noreferrer" class="footer-directions-link">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM COPYRIGHT -->
+            <div class="footer-bottom-bar">
+                <p class="footer-copy">
+                    © 2026 edYOUcate. All rights reserved.
+                </p>
+                <p class="footer-tagline">
+                    Designed for learners like you.
+                </p>
             </div>
         </div>
     </footer>
