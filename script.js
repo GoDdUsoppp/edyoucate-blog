@@ -352,92 +352,152 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================================
-    // 7. Interactive Multi-Business Consultation Form (Tabs & Dynamic Content)
+    // =========================================================================
+    // 7. Simplified Consultation Form (Service Dropdown & Dynamic Sub-Options)
     // =========================================================================
     const consultForm = document.getElementById('consultationForm');
     const serviceSelect = document.getElementById('consultService');
     const requirementSelect = document.getElementById('consultRequirement');
-    const serviceTabs = document.querySelectorAll('.service-tab-card');
-    const selectedServiceHint = document.getElementById('selectedServiceHint');
     const requirementLabel = document.getElementById('requirementLabel');
-    const requirementHint = document.getElementById('requirementHint');
     const requirementPrefixIcon = document.getElementById('requirementPrefixIcon');
     const btnMainText = document.getElementById('btnMainText');
 
     const businessMeta = {
-        'nios': {
-            hint: 'NIOS Class 10th & 12th Board',
-            label: 'Select NIOS Stream / Exam Level',
-            subhint: '100% Valid for Govt Jobs & NEET/JEE',
+        'open_schooling': {
+            name: 'Open Schooling',
+            label: 'Select Open Schooling Program',
             icon: '<i class="fa-solid fa-graduation-cap"></i>',
-            btnText: 'Get Free NIOS Guidance on WhatsApp',
+            btnText: 'Get Open Schooling Guidance on WhatsApp',
             courses: [
-                { val: 'Class 10th (Secondary) Fresh Admission', text: 'Class 10th (Secondary) Fresh Admission' },
-                { val: 'Class 12th (Senior Secondary - Sci / Comm / Arts)', text: 'Class 12th (Senior Secondary - Science / Commerce / Arts)' },
+                { val: 'Class 10th (Secondary) Admission & Coaching', text: 'Class 10th (Secondary) Admission & Coaching' },
+                { val: 'Class 12th Senior Secondary (Science / Commerce / Arts)', text: 'Class 12th Senior Secondary (Science / Commerce / Arts)' },
+                { val: 'On-Demand Examination (ODE - Fast Result)', text: 'On-Demand Examination (ODE - Fast Result)' },
                 { val: 'Failed / Dropout Support (Stream 2 / TOC)', text: 'Failed / Dropout Support (Stream 2 / Credit Transfer)' },
-                { val: 'On-Demand Examination (ODE)', text: 'On-Demand Examination (ODE - Instant Exams)' },
                 { val: 'Improvement Exam / Extra Subject Addition', text: 'Improvement Exam / Extra Subject Addition' },
-                { val: 'Study Material & Coaching Support', text: 'Study Material & Coaching Guidance' },
-                { val: 'General NIOS Consultation', text: 'General NIOS Consultation & Counseling' }
+                { val: 'General Open Schooling Consultation', text: 'General Open Schooling Consultation' }
             ]
         },
-        'distance': {
-            hint: 'UGC-DEB Approved Online & Distance Degrees',
+        'online_distance': {
+            name: 'Online Distance',
             label: 'Select Degree / Course Level',
-            subhint: 'Study While Working · Approved Degrees',
             icon: '<i class="fa-solid fa-building-columns"></i>',
             btnText: 'Explore Distance Degrees on WhatsApp',
             courses: [
                 { val: "Bachelor's Degree (BBA / BCA / B.Com / BA / B.Sc)", text: "Bachelor's Degree (BBA / BCA / B.Com / BA / B.Sc)" },
                 { val: "Master's Degree (MBA / MCA / M.Com / MA / M.Sc)", text: "Master's Degree (MBA / MCA / M.Com / MA / M.Sc)" },
                 { val: "Executive MBA for Working Adults", text: "Executive MBA (Fast-Track for Working Professionals)" },
-                { val: "Professional & PG Diplomas", text: "Professional & Post-Graduate Diplomas" },
+                { val: "Post-Graduate & Professional Diplomas", text: "Post-Graduate & Professional Diplomas" },
                 { val: "UGC-DEB University Selection & Fees Guidance", text: "UGC-DEB University Selection & Fees Guidance" },
-                { val: "Credit Transfer & Lateral Entry Guidance", text: "Credit Transfer & Lateral Entry Guidance" }
+                { val: "Credit Transfer & Lateral Entry Admission", text: "Credit Transfer & Lateral Entry Admission" }
             ]
         },
-        'tourism': {
-            hint: 'Prapti Tourism Educational & Group Travel',
-            label: 'Select Tour Type / Package',
-            subhint: 'Verified Stays, Transport & Expert Guides',
-            icon: '<i class="fa-solid fa-plane-departure"></i>',
-            btnText: 'Get Prapti Tour Quote on WhatsApp',
+        'eng_med_admission': {
+            name: 'Engineering and Medical Admission',
+            label: 'Select Admission Stream / Quota',
+            icon: '<i class="fa-solid fa-user-doctor"></i>',
+            btnText: 'Get Admission Guidance on WhatsApp',
             courses: [
-                { val: 'School / College Industrial & Science Excursions', text: 'School / College Industrial & Science Excursions' },
-                { val: 'College Excursion / Field Study Tour', text: 'College Excursion / Field Study Tour' },
-                { val: 'Heritage & National Educational Trip', text: 'Heritage & National Educational Trip' },
-                { val: 'Adventure Camp & Youth Trekking Tour', text: 'Adventure Camp & Youth Trekking Tour' },
-                { val: 'Customized School Group Tour Package', text: 'Customized School Group Tour Package' },
-                { val: 'Corporate / Family Group Tour Itinerary', text: 'Corporate / Family Group Tour Itinerary' }
+                { val: 'Engineering Admission (B.Tech / BE - Top Colleges)', text: 'Engineering Admission (B.Tech / BE - Top Colleges)' },
+                { val: 'Medical Admission (MBBS / BDS / BAMS / BHMS)', text: 'Medical Admission (MBBS / BDS / BAMS / BHMS)' },
+                { val: 'NEET & JEE Counseling & Cutoff Guidance', text: 'NEET & JEE Counseling & Cutoff Guidance' },
+                { val: 'Management / Institutional Quota Counseling', text: 'Management / Institutional Quota Counseling' },
+                { val: 'Direct Admission & Fee Structure Assistance', text: 'Direct Admission & Fee Structure Assistance' },
+                { val: 'College Shortlisting & Verification Support', text: 'College Shortlisting & Verification Support' }
+            ]
+        },
+        'career_counseling': {
+            name: 'Career Counseling',
+            label: 'Select Career Counseling Service',
+            icon: '<i class="fa-solid fa-compass"></i>',
+            btnText: 'Book Free Career Counseling on WhatsApp',
+            courses: [
+                { val: 'Post-10th Stream Selection Guidance', text: 'Post-10th Stream Selection Guidance' },
+                { val: 'Post-12th Career Path & College Selection', text: 'Post-12th Career Path & College Selection' },
+                { val: 'Higher Education & Career Switch Roadmap', text: 'Higher Education & Career Switch Roadmap' },
+                { val: 'Psychometric & Aptitude Assessment', text: 'Psychometric & Aptitude Assessment' },
+                { val: '1-on-1 Personalized Career Mentorship', text: '1-on-1 Personalized Career Mentorship' },
+                { val: 'Study Abroad & Global Degree Counseling', text: 'Study Abroad & Global Degree Counseling' }
+            ]
+        },
+        'dmit_report': {
+            name: 'DMIT Report',
+            label: 'Select DMIT Assessment Type',
+            icon: '<i class="fa-solid fa-brain"></i>',
+            btnText: 'Book DMIT Test & Report on WhatsApp',
+            courses: [
+                { val: 'Comprehensive DMIT Brain Mapping Analysis', text: 'Comprehensive DMIT Brain Mapping Analysis' },
+                { val: 'Multiple Intelligence & Learning Style Test', text: 'Multiple Intelligence & Learning Style Test' },
+                { val: 'Child & Student Potential Assessment (Age 4-18)', text: 'Child & Student Potential Assessment (Age 4-18)' },
+                { val: 'Inborn Talents & Brain Dominance Report', text: 'Inborn Talents & Brain Dominance Report' },
+                { val: 'Adult Career Strengths & Profiling', text: 'Adult Career Strengths & Profiling' },
+                { val: 'Full DMIT Report with Expert Counseling Session', text: 'Full DMIT Report with Expert Counseling Session' }
             ]
         }
     };
 
-    function selectServiceTab(serviceKey) {
-        const meta = businessMeta[serviceKey] || businessMeta['nios'];
+    const serviceContainer = document.getElementById('serviceDropdownContainer');
+    const serviceTrigger = document.getElementById('serviceDropdownTrigger');
+    const serviceSelectedLabel = document.getElementById('serviceSelectedLabel');
+    const serviceOptionsList = document.getElementById('serviceOptionsList');
 
-        // Update tabs active state & accessibility
-        if (serviceTabs.length > 0) {
-            serviceTabs.forEach(tab => {
-                const isCurrent = tab.getAttribute('data-service') === serviceKey;
-                tab.classList.toggle('active', isCurrent);
-                tab.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    const requirementContainer = document.getElementById('requirementDropdownContainer');
+    const requirementTrigger = document.getElementById('requirementDropdownTrigger');
+    const requirementSelectedLabel = document.getElementById('requirementSelectedLabel');
+    const requirementOptionsList = document.getElementById('requirementOptionsList');
+
+    function selectRequirementOption(val, text) {
+        if (requirementSelect) {
+            requirementSelect.value = val;
+        }
+        if (requirementSelectedLabel) {
+            requirementSelectedLabel.textContent = text;
+        }
+        if (requirementOptionsList) {
+            const options = requirementOptionsList.querySelectorAll('.custom-select-option');
+            options.forEach(opt => {
+                const isMatch = opt.getAttribute('data-value') === val;
+                opt.classList.toggle('active', isMatch);
+                opt.setAttribute('aria-selected', isMatch ? 'true' : 'false');
             });
         }
+        if (requirementContainer) {
+            requirementContainer.classList.remove('open');
+            if (requirementTrigger) requirementTrigger.setAttribute('aria-expanded', 'false');
+        }
+    }
 
-        // Sync hidden select
-        if (serviceSelect) {
+    function updateServiceRequirements(serviceKey) {
+        const meta = businessMeta[serviceKey] || businessMeta['open_schooling'];
+
+        if (serviceSelect && serviceSelect.value !== serviceKey) {
             serviceSelect.value = serviceKey;
         }
 
-        // Update hints, labels and button text
-        if (selectedServiceHint) selectedServiceHint.textContent = meta.hint;
-        if (requirementLabel) requirementLabel.innerHTML = `${meta.label} <span class="required-star">*</span>`;
-        if (requirementHint) requirementHint.textContent = meta.subhint;
-        if (requirementPrefixIcon) requirementPrefixIcon.innerHTML = meta.icon;
-        if (btnMainText) btnMainText.textContent = meta.btnText;
+        if (serviceSelectedLabel) {
+            serviceSelectedLabel.textContent = meta.name;
+        }
 
-        // Populate requirements dropdown
+        // Highlight matching option in custom service options list
+        if (serviceOptionsList) {
+            const options = serviceOptionsList.querySelectorAll('.custom-select-option');
+            options.forEach(opt => {
+                const isMatch = opt.getAttribute('data-value') === serviceKey;
+                opt.classList.toggle('active', isMatch);
+                opt.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+            });
+        }
+
+        if (requirementLabel) {
+            requirementLabel.innerHTML = `${meta.label} <span class="required-star">*</span>`;
+        }
+        if (requirementPrefixIcon) {
+            requirementPrefixIcon.innerHTML = meta.icon;
+        }
+        if (btnMainText) {
+            btnMainText.textContent = meta.btnText;
+        }
+
+        // Sync hidden native select
         if (requirementSelect) {
             requirementSelect.innerHTML = '';
             meta.courses.forEach(opt => {
@@ -446,28 +506,114 @@ document.addEventListener('DOMContentLoaded', () => {
                 optElem.textContent = opt.text;
                 requirementSelect.appendChild(optElem);
             });
+            if (meta.courses.length > 0) {
+                requirementSelect.value = meta.courses[0].val;
+            }
+        }
+
+        // Set default requirement label
+        if (requirementSelectedLabel && meta.courses.length > 0) {
+            requirementSelectedLabel.textContent = meta.courses[0].text;
+        }
+
+        // Populate custom requirement options list
+        if (requirementOptionsList) {
+            requirementOptionsList.innerHTML = '';
+            meta.courses.forEach((course, index) => {
+                const li = document.createElement('li');
+                li.className = `custom-select-option ${index === 0 ? 'active' : ''}`;
+                li.setAttribute('data-value', course.val);
+                li.setAttribute('role', 'option');
+                li.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+                li.innerHTML = `<span class="option-text">${course.text}</span><span class="option-check"><i class="fa-solid fa-check"></i></span>`;
+
+                li.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectRequirementOption(course.val, course.text);
+                });
+
+                requirementOptionsList.appendChild(li);
+            });
         }
     }
 
-    if (serviceTabs.length > 0) {
-        serviceTabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                const serviceKey = tab.getAttribute('data-service');
-                selectServiceTab(serviceKey);
+    // Toggle service dropdown
+    if (serviceTrigger && serviceContainer) {
+        serviceTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (requirementContainer) {
+                requirementContainer.classList.remove('open');
+                if (requirementTrigger) requirementTrigger.setAttribute('aria-expanded', 'false');
+            }
+            const isOpen = serviceContainer.classList.toggle('open');
+            serviceTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
+    // Toggle requirement dropdown
+    if (requirementTrigger && requirementContainer) {
+        requirementTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (serviceContainer) {
+                serviceContainer.classList.remove('open');
+                if (serviceTrigger) serviceTrigger.setAttribute('aria-expanded', 'false');
+            }
+            const isOpen = requirementContainer.classList.toggle('open');
+            requirementTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
+    // Select service option
+    if (serviceOptionsList) {
+        const serviceOptions = serviceOptionsList.querySelectorAll('.custom-select-option');
+        serviceOptions.forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const serviceKey = opt.getAttribute('data-value');
+                updateServiceRequirements(serviceKey);
+                if (serviceContainer) {
+                    serviceContainer.classList.remove('open');
+                    if (serviceTrigger) serviceTrigger.setAttribute('aria-expanded', 'false');
+                }
             });
         });
     }
 
+    // Close any open custom dropdown on click outside
+    document.addEventListener('click', (e) => {
+        if (serviceContainer && !serviceContainer.contains(e.target)) {
+            serviceContainer.classList.remove('open');
+            if (serviceTrigger) serviceTrigger.setAttribute('aria-expanded', 'false');
+        }
+        if (requirementContainer && !requirementContainer.contains(e.target)) {
+            requirementContainer.classList.remove('open');
+            if (requirementTrigger) requirementTrigger.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (serviceContainer) {
+                serviceContainer.classList.remove('open');
+                if (serviceTrigger) serviceTrigger.setAttribute('aria-expanded', 'false');
+            }
+            if (requirementContainer) {
+                requirementContainer.classList.remove('open');
+                if (requirementTrigger) requirementTrigger.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+
     // Default initialization based on current page URL
     const pageUrl = window.location.pathname.toLowerCase();
-    let initialService = 'nios';
+    let initialService = 'open_schooling';
     if (pageUrl.includes('distance-learning')) {
-        initialService = 'distance';
-    } else if (pageUrl.includes('prapti-tourism')) {
-        initialService = 'tourism';
+        initialService = 'online_distance';
+    } else if (serviceSelect && serviceSelect.value) {
+        initialService = serviceSelect.value;
     }
-    selectServiceTab(initialService);
+    updateServiceRequirements(initialService);
 
     if (consultForm) {
         consultForm.addEventListener('submit', (e) => {
@@ -476,22 +622,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameInput = document.getElementById('consultName');
             const phoneInput = document.getElementById('consultPhone');
             const cityInput = document.getElementById('consultCity');
-            const messageInput = document.getElementById('consultMessage');
 
             const name = nameInput ? nameInput.value.trim() : '';
             const phone = phoneInput ? phoneInput.value.trim() : '';
-            const serviceKey = serviceSelect ? serviceSelect.value : 'nios';
-            const serviceTitles = {
-                'nios': 'NIOS Open Schooling (Class 10th & 12th)',
-                'distance': 'Distance & Online Learning (UG / PG Degrees)',
-                'tourism': 'Prapti Tourism (Educational & Group Tours)'
-            };
-            const serviceLabel = serviceTitles[serviceKey] || 'Educational Guidance';
+            const serviceKey = serviceSelect ? serviceSelect.value : 'open_schooling';
+            const meta = businessMeta[serviceKey] || businessMeta['open_schooling'];
+            const serviceLabel = meta.name;
             const requirement = requirementSelect && requirementSelect.value 
                 ? requirementSelect.value 
                 : 'General Inquiry';
             const city = cityInput && cityInput.value.trim() ? cityInput.value.trim() : 'Surat';
-            const message = messageInput ? messageInput.value.trim() : '';
 
             if (!name || !phone) {
                 alert('Please enter your Name and WhatsApp number.');
@@ -505,11 +645,11 @@ I would like a consultation from your blog:
 
 👤 *Full Name:* ${name}
 📱 *Phone / WhatsApp:* ${phone}
-🏢 *Service Domain:* ${serviceLabel}
-🎯 *Requirement / Course:* ${requirement}
-📍 *City / Location:* ${city}${message ? `\n💬 *Questions / Details:* ${message}` : ''}
+🏢 *Service:* ${serviceLabel}
+🎯 *Requirement / Program:* ${requirement}
+📍 *City / Location:* ${city}
 
-Please connect with me with complete syllabus, fee structure, and admission guidance. Thank you!`;
+Please connect with me with complete details, fee structure, and admission guidance. Thank you!`;
 
             const waUrl = `https://wa.me/918866230077?text=${encodeURIComponent(waText)}`;
             
