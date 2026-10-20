@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // 5. Mobile Story Navigation: Collapsible Table of Contents & Web Share
+    // 5. Story Navigation: Interactive TOC ScrollSpy & Collapsible Mobile TOC
     // =========================================================================
     const mobileTocToggle = document.querySelector('.mobile-toc-toggle');
     const mobileTocAccordion = document.querySelector('.mobile-toc-accordion');
@@ -278,6 +278,112 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileTocToggle.setAttribute('aria-expanded', 'false');
             });
         });
+    }
+
+    // Dynamic TOC ScrollSpy (Highlights headings as the reader scrolls)
+    const storyHeadings = Array.from(document.querySelectorAll('.story-text h2[id]'));
+    const desktopTocLinks = Array.from(document.querySelectorAll('.toc a'));
+    const mobileTocLinks = Array.from(document.querySelectorAll('.mobile-toc-content a'));
+
+    if (storyHeadings.length > 0 && (desktopTocLinks.length > 0 || mobileTocLinks.length > 0)) {
+        function setActiveTocItem(activeId) {
+            if (!activeId) return;
+
+            desktopTocLinks.forEach(link => {
+                const href = link.getAttribute('href') || '';
+                const targetId = href.startsWith('#') ? href.slice(1) : href.split('#')[1];
+                if (targetId === activeId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            mobileTocLinks.forEach(link => {
+                const href = link.getAttribute('href') || '';
+                const targetId = href.startsWith('#') ? href.slice(1) : href.split('#')[1];
+                if (targetId === activeId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        function updateActiveToc() {
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // 1. If at bottom of page, activate the last heading
+            if (scrollY + windowHeight >= docHeight - 60) {
+                const lastHeading = storyHeadings[storyHeadings.length - 1];
+                if (lastHeading) {
+                    setActiveTocItem(lastHeading.getAttribute('id'));
+                    return;
+                }
+            }
+
+            // 2. Target activation line: 180px from top of viewport (below header)
+            const targetActivationY = 180;
+            let currentActiveHeading = storyHeadings[0];
+
+            for (let i = 0; i < storyHeadings.length; i++) {
+                const heading = storyHeadings[i];
+                const rect = heading.getBoundingClientRect();
+                
+                // If heading is above or at the target line, it is candidate for active
+                if (rect.top <= targetActivationY) {
+                    currentActiveHeading = heading;
+                } else {
+                    // Headings are in DOM order; subsequent ones are further down
+                    break;
+                }
+            }
+
+            if (currentActiveHeading) {
+                setActiveTocItem(currentActiveHeading.getAttribute('id'));
+            }
+        }
+
+        // Click handler to immediately set active and smooth scroll with header offset
+        const allTocLinks = [...desktopTocLinks, ...mobileTocLinks];
+        allTocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href') || '';
+                const targetId = href.startsWith('#') ? href.slice(1) : href.split('#')[1];
+                if (targetId) {
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const headerOffset = 85;
+                        const elementPosition = targetEl.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        setActiveTocItem(targetId);
+                    }
+                }
+            });
+        });
+
+        // Throttle scroll listener with requestAnimationFrame
+        let scrollTimeout = null;
+        window.addEventListener('scroll', () => {
+            if (!scrollTimeout) {
+                scrollTimeout = requestAnimationFrame(() => {
+                    updateActiveToc();
+                    scrollTimeout = null;
+                });
+            }
+        }, { passive: true });
+
+        // Initial check on page load
+        updateActiveToc();
     }
 
     // Copy link / Share handling
@@ -313,17 +419,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // 6. Interactive FAQ Accordion
+    // 6. Interactive FAQ Accordion, Live Search & Category Jump
     // =========================================================================
-    const faqButtons = document.querySelectorAll('.faq-question-btn');
-    faqButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
+    const faqContainer = document.querySelector('.faq-column');
+    if (faqContainer) {
+        // Event delegation for accordion items
+        faqContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.faq-question-btn');
+            if (!btn) return;
             const currentItem = btn.closest('.faq-item');
             if (!currentItem) return;
             const collapse = currentItem.querySelector('.faq-answer-collapse');
             const isOpen = currentItem.classList.contains('active');
 
-            // Close all other FAQ items in this accordion
+            // Close all other FAQ items in this specific section group
             const parentList = currentItem.closest('.faq-accordion-list');
             if (parentList) {
                 const allItems = parentList.querySelectorAll('.faq-item');
@@ -346,10 +455,68 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 currentItem.classList.add('active');
                 btn.setAttribute('aria-expanded', 'true');
-                if (collapse) collapse.style.maxHeight = collapse.scrollHeight + 'px';
+                if (collapse) collapse.style.maxHeight = (collapse.scrollHeight + 40) + 'px';
             }
         });
-    });
+
+        // Live Search within the FAQ independent container
+        const faqSearchInput = document.getElementById('faqSearchInput');
+        const faqSearchClear = document.getElementById('faqSearchClear');
+        const scrollContainer = document.querySelector('.faq-accordion-scroll-container');
+        const pillButtons = document.querySelectorAll('.faq-pill-btn');
+
+        if (faqSearchInput) {
+            faqSearchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim().toLowerCase();
+                if (faqSearchClear) faqSearchClear.style.display = query ? 'block' : 'none';
+
+                const sectionGroups = document.querySelectorAll('.faq-section-group');
+                sectionGroups.forEach(group => {
+                    const items = group.querySelectorAll('.faq-item');
+                    let groupMatchCount = 0;
+                    items.forEach(item => {
+                        const qText = item.querySelector('.faq-question-btn')?.textContent.toLowerCase() || '';
+                        const aText = item.querySelector('.faq-answer-inner')?.textContent.toLowerCase() || '';
+                        if (!query || qText.includes(query) || aText.includes(query)) {
+                            item.style.display = '';
+                            groupMatchCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    group.style.display = (groupMatchCount > 0) ? '' : 'none';
+                });
+            });
+
+            if (faqSearchClear) {
+                faqSearchClear.addEventListener('click', () => {
+                    faqSearchInput.value = '';
+                    faqSearchClear.style.display = 'none';
+                    faqSearchInput.dispatchEvent(new Event('input'));
+                });
+            }
+        }
+
+        // Quick Category Jump Pills
+        if (pillButtons.length > 0 && scrollContainer) {
+            pillButtons.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    pillButtons.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    const targetSecId = pill.getAttribute('data-target');
+                    if (targetSecId === 'all') {
+                        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const targetElem = document.getElementById(targetSecId);
+                        if (targetElem) {
+                            const offsetTop = targetElem.offsetTop - scrollContainer.offsetTop;
+                            scrollContainer.scrollTo({ top: Math.max(0, offsetTop - 10), behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        }
+    }
 
     // =========================================================================
     // =========================================================================

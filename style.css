@@ -942,8 +942,9 @@ img {
 }
 
 .small-card-image {
-    width: 100px;
-    height: 75px;
+    width: 125px;
+    aspect-ratio: 16/9;
+    height: auto;
     flex-shrink: 0;
     border-radius: var(--radius-sm);
     overflow: hidden;
@@ -1010,8 +1011,9 @@ img {
     }
 
     .small-card-image {
-        width: 220px;
-        height: 140px;
+        width: 240px;
+        aspect-ratio: 16/9;
+        height: auto;
     }
 
     .small-card-content h4 {
@@ -1023,8 +1025,9 @@ img {
 /* Featured Tablet Layout (641px to 1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
     .small-card-image {
-        width: 170px;
-        height: 115px;
+        width: 180px;
+        aspect-ratio: 16/9;
+        height: auto;
     }
 
     .small-card-content h4 {
@@ -1060,7 +1063,7 @@ img {
     border-radius: var(--radius-md);
     overflow: hidden;
     margin-bottom: 1.25rem;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     box-shadow: var(--shadow-sm);
     width: 100%;
 }
@@ -1074,15 +1077,20 @@ img {
 .card-badge {
     position: absolute;
     top: 0.85rem;
-    left: 0.85rem;
-    background-color: var(--color-badge-bg);
+    right: 0.85rem;
+    left: auto;
+    background-color: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: var(--color-blue-dark);
     font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
-    z-index: 1;
-    letter-spacing: 0.03em;
+    font-weight: 800;
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    z-index: 2;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .card-content h3 {
@@ -1146,7 +1154,7 @@ img {
     }
 
     .card-image {
-        aspect-ratio: 4/3;
+        aspect-ratio: 16/9;
     }
 
     .arrow-icon {
@@ -1431,6 +1439,22 @@ img {
     color: var(--color-text-main);
     font-weight: 500;
     display: block;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.mobile-toc-content a:hover {
+    color: #e60000;
+    background: rgba(230, 0, 0, 0.04);
+}
+
+.mobile-toc-content a.active {
+    color: #e60000 !important;
+    font-weight: 700 !important;
+    background: rgba(230, 0, 0, 0.07) !important;
+    border-left: 3px solid #e60000 !important;
 }
 
 .mobile-share-bar {
@@ -1474,7 +1498,7 @@ img {
     margin-bottom: 2.5rem;
     border-radius: var(--radius-md);
     overflow: hidden;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     box-shadow: var(--shadow-sm);
     width: 100%;
 }
@@ -1501,6 +1525,71 @@ img {
     border-top: 1px solid var(--color-border);
     line-height: 1.25;
     overflow-wrap: break-word;
+    scroll-margin-top: 100px;
+}
+
+.story-references-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: clamp(1.35rem, 2.5vw + 0.3rem, 1.85rem) !important;
+    font-weight: 800 !important;
+    color: var(--color-blue-dark) !important;
+    margin: 3rem 0 1.25rem !important;
+    padding-top: 1.75rem !important;
+    border-top: 2px solid var(--color-border) !important;
+    scroll-margin-top: 100px;
+}
+
+.story-references-heading .ref-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: #fff0f0;
+    color: #e60000;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.story-reference-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.6rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.story-reference-link i {
+    color: #e60000;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.story-reference-link strong {
+    color: #1e293b;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.story-reference-link a {
+    color: #e60000;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.story-reference-link a:hover {
+    color: #b91c1c;
 }
 
 .sidebar-title {
@@ -1530,8 +1619,9 @@ img {
 }
 
 .sidebar-story-card img {
-    width: 90px;
-    height: 68px;
+    width: 105px;
+    aspect-ratio: 16/9;
+    height: auto;
     object-fit: cover;
     border-radius: var(--radius-sm);
     flex-shrink: 0;
@@ -1615,12 +1705,24 @@ img {
         font-weight: 500;
         line-height: 1.4;
         display: block;
-        transition: color 0.2s ease;
+        padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+        border-left: 3px solid transparent;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 0 6px 6px 0;
     }
 
-    .toc a:hover, .toc a.active {
-        color: var(--color-blue-dark);
-        font-weight: 700;
+    .toc a:hover {
+        color: #e60000;
+        border-left-color: #fca5a5;
+        background: rgba(230, 0, 0, 0.04);
+    }
+
+    .toc a.active {
+        color: #e60000 !important;
+        font-weight: 700 !important;
+        border-left: 3px solid #e60000 !important;
+        background: rgba(230, 0, 0, 0.07) !important;
+        transform: translateX(2px);
     }
 
     .share-buttons {
@@ -1803,7 +1905,7 @@ img {
 }
 
 .cat-image {
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     border-radius: var(--radius-md);
     overflow: hidden;
     margin-bottom: 1.25rem;
@@ -1897,7 +1999,7 @@ img {
     }
 
     .cat-image {
-        aspect-ratio: 4/3;
+        aspect-ratio: 16/9;
     }
 
     .cat-card h3 {
@@ -1956,8 +2058,9 @@ img {
     }
 
     .small-card-image {
-        width: 82px;
-        height: 65px;
+        width: 105px;
+        aspect-ratio: 16/9;
+        height: auto;
     }
 
     .small-card-content h4 {
@@ -1997,8 +2100,14 @@ img {
 
 @media (min-width: 1024px) {
     .faq-consult-grid {
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
         gap: 3.5rem;
+        align-items: start;
+    }
+
+    .consultation-column {
+        position: sticky;
+        top: 90px;
     }
 }
 
@@ -2040,12 +2149,191 @@ img {
     margin-bottom: 1.75rem;
 }
 
-/* FAQ Accordion */
+/* FAQ Accordion & Independent Scroll Container */
+.faq-search-box {
+    margin-bottom: 1.25rem;
+    position: relative;
+    width: 100%;
+}
+
+.faq-search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.faq-search-input-wrapper i.search-icon {
+    position: absolute;
+    left: 1rem;
+    color: #64748b;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.faq-live-input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 2.6rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    background: #ffffff;
+    color: #1e293b;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.faq-live-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.faq-search-clear {
+    position: absolute;
+    right: 0.85rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+}
+
+.faq-search-clear:hover {
+    color: #1e293b;
+}
+
+/* Category Quick Jump Pills */
+.faq-category-pills {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+    -webkit-overflow-scrolling: touch;
+}
+
+.faq-category-pills::-webkit-scrollbar {
+    height: 4px;
+}
+
+.faq-category-pills::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.faq-pill-btn {
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-full);
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.faq-pill-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.faq-pill-btn.active {
+    background: #1e293b;
+    border-color: #1e293b;
+    color: #ffffff;
+}
+
+/* Independent Scroll Container */
+.faq-accordion-scroll-container {
+    max-height: 640px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.6rem;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.faq-accordion-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.faq-accordion-scroll-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+.faq-accordion-scroll-container::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 6px;
+}
+
+.faq-accordion-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Section Grouping */
+.faq-section-group {
+    margin-bottom: 2rem;
+}
+
+.faq-section-group:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.faq-section-heading {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.faq-sec-badge {
+    display: none !important;
+}
+
+.faq-sec-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.faq-sec-count {
+    display: none !important;
+}
+
 .faq-accordion-list {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.75rem;
     width: 100%;
+}
+
+.faq-num-pill {
+    display: none !important;
+}
+
+.faq-q-text {
+    display: inline-block;
+    flex: 1;
 }
 
 .faq-item {
@@ -2063,8 +2351,8 @@ img {
 }
 
 .faq-item.active {
-    border-color: #0284c7;
-    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.08);
+    border-color: #e60000;
+    box-shadow: 0 6px 16px rgba(230, 0, 0, 0.08);
 }
 
 .faq-question-btn {
@@ -2090,6 +2378,10 @@ img {
     color: #e60000;
 }
 
+.faq-item.active .faq-question-btn {
+    color: #e60000;
+}
+
 .faq-icon-wrapper {
     width: 28px;
     height: 28px;
@@ -2106,8 +2398,8 @@ img {
 
 .faq-item.active .faq-icon-wrapper {
     transform: rotate(180deg);
-    background: #e0f2fe;
-    color: #0284c7;
+    background: #fff0f0;
+    color: #e60000;
 }
 
 .faq-answer-collapse {
