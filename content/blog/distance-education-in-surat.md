@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Distance Education in Surat: A Student's Guide"
 slug: "distance-education-in-surat"
 description: "Explore distance education in Surat: course choices, eligibility, ODL vs online learning, UGC-DEB recognition checks, fees and admission steps."

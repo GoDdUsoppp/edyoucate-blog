@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Online Degree Courses in Surat: How to Choose"
 slug: "online-degree-courses-in-surat"
 description: "Compare online degree courses in Surat by eligibility, recognition, subjects, fees, learning platform and examinations before applying."

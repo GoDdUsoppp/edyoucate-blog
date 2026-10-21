@@ -1,4 +1,4 @@
-﻿---
+---
 title: "NIOS Open School Admission: What Students Should Know"
 slug: "nios-open-school-admission"
 description: "Learn how NIOS open schooling works, who may apply, what flexibility means and which questions to ask before admission."

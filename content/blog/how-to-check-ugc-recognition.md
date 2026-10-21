@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How to Check UGC Recognition for Online Degrees"
 slug: "how-to-check-ugc-recognition"
 description: "Learn how to verify UGC-DEB recognition for an online degree: check university, exact programme, learning mode and academic session."

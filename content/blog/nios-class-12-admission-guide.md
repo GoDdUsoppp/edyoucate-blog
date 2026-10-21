@@ -1,4 +1,4 @@
-﻿---
+---
 title: "NIOS Class 12 Admission: Eligibility, Subjects and Documents"
 slug: "nios-class-12-admission-guide"
 description: "Understand NIOS Class 12 admission, eligibility, subject choices, documents and important certification rules before applying."

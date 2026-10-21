@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Online MBA Admission: Eligibility, Fees and University Selection"
 slug: "online-mba-admission-guide"
 description: "Compare online MBA admission eligibility, AICTE/UGC approvals, specialisations, fees and university selection checklist."

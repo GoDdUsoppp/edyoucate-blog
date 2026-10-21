@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Failed Class 10? How to Continue Your Education Through NIOS"
 slug: "nios-class-10-after-failure"
 description: "One result does not define your future. Explore NIOS Secondary eligibility, subject choices, documents and a realistic study plan."

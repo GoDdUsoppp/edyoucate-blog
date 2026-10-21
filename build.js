@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,10 +21,20 @@ function formatDate(dateStr) {
   return `${month} ${day}, ${year}`;
 }
 
-// Fallback / lightweight frontmatter parser
+// Frontmatter parser using gray-matter with automatic BOM stripping
 function parseFrontmatter(fileContent) {
-  const match = fileContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!match) return { data: {}, content: fileContent };
+  // Strip UTF-8 Byte Order Mark (BOM) if present
+  const cleanContent = fileContent.replace(/^\uFEFF/, '').trimStart();
+  try {
+    const parsed = matter(cleanContent);
+    return { data: parsed.data || {}, content: parsed.content || '' };
+  } catch (err) {
+    console.warn('gray-matter error, using fallback:', err.message);
+  }
+
+  // Fallback regex frontmatter parser
+  const match = cleanContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) return { data: {}, content: cleanContent };
 
   const yamlBlock = match[1];
   const content = match[2];
@@ -58,11 +70,9 @@ function parseFrontmatter(fileContent) {
   return { data, content };
 }
 
-// Markdown to HTML converter (uses 'marked' if available, otherwise resilient regex converter)
+// Markdown to HTML converter
 async function renderMarkdown(markdown) {
   try {
-    const markedModule = await import('marked');
-    const marked = markedModule.marked || markedModule.default?.marked || markedModule.default;
     if (typeof marked.parse === 'function') {
       return marked.parse(markdown);
     }
