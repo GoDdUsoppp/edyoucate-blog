@@ -241,7 +241,7 @@ foreach ($sp in $sidePosts) {
                   "                        </div>`n" +
                   "                        <div class=""small-card-content"">`n" +
                   "                            <span class=""small-card-eyebrow"">$spCat</span>`n" +
-                  "                            <h4><a href=""$spSlug.html"">$spTitle. <svg class=""arrow-icon"" width=""16"" height=""16"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"" stroke-linecap=""round"" stroke-linejoin=""round""><line x1=""7"" y1=""17"" x2=""17"" y2=""7""></line><polyline points=""7 7 17 7 17 17""></polyline></svg></a></h4>`n" +
+                  "                            <h4><a href=""$spSlug.html"">$spTitle <svg class=""arrow-icon"" width=""16"" height=""16"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"" stroke-linecap=""round"" stroke-linejoin=""round""><line x1=""7"" y1=""17"" x2=""17"" y2=""7""></line><polyline points=""7 7 17 7 17 17""></polyline></svg></a></h4>`n" +
                   "                            <p>$spDesc</p>`n" +
                   "                            <div class=""card-meta"">$spDate &nbsp;&bull;&nbsp; $spRead</div>`n" +
                   "                        </div>`n" +
@@ -302,7 +302,7 @@ foreach ($np in $niosPosts) {
                   "                        <div class=""cat-meta-row"">`n" +
                   "                            <span class=""cat-read-time"">$npRead</span>`n" +
                   "                        </div>`n" +
-                  "                        <h3><a href=""$npSlug.html"">$npTitle.</a></h3>`n" +
+                  "                        <h3><a href=""$npSlug.html"">$npTitle</a></h3>`n" +
                   "                        <p>$npDesc</p>`n" +
                   "                    </article>"
 }
@@ -331,7 +331,7 @@ foreach ($dp in $distPosts) {
                   "                            <span class=""cat-eyebrow"">DISTANCE LEARNING</span>`n" +
                   "                            <span class=""cat-read-time"">$dpRead</span>`n" +
                   "                        </div>`n" +
-                  "                        <h3><a href=""$dpSlug.html"">$dpTitle.</a></h3>`n" +
+                  "                        <h3><a href=""$dpSlug.html"">$dpTitle</a></h3>`n" +
                   "                        <p>$dpDesc</p>`n" +
                   "                    </article>"
 }

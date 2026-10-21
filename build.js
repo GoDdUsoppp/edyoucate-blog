@@ -306,7 +306,7 @@ async function build() {
                         </div>
                         <div class="small-card-content">
                             <span class="small-card-eyebrow">${post.category.toUpperCase()}</span>
-                            <h4><a href="${post.slug}.html">${post.title}. <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></h4>
+                            <h4><a href="${post.slug}.html">${post.title} <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></h4>
                             <p>${post.description}</p>
                             <div class="card-meta">${formatDate(post.date)} &nbsp;&bull;&nbsp; ${post.read_time || '11 MIN READ'}</div>
                         </div>
@@ -344,7 +344,7 @@ async function build() {
                         <div class="cat-meta-row">
                             <span class="cat-read-time">${post.read_time || '11 MIN READ'}</span>
                         </div>
-                        <h3><a href="${post.slug}.html">${post.title}.</a></h3>
+                        <h3><a href="${post.slug}.html">${post.title}</a></h3>
                         <p>${post.description}</p>
                     </article>`).join('\n');
 
@@ -363,7 +363,7 @@ async function build() {
                             <span class="cat-eyebrow">DISTANCE LEARNING</span>
                             <span class="cat-read-time">${post.read_time || '12 MIN READ'}</span>
                         </div>
-                        <h3><a href="${post.slug}.html">${post.title}.</a></h3>
+                        <h3><a href="${post.slug}.html">${post.title}</a></h3>
                         <p>${post.description}</p>
                     </article>`).join('\n');
 
