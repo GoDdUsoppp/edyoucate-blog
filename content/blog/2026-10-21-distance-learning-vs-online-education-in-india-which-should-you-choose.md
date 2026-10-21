@@ -5,7 +5,7 @@ description: temp desc
 image: /uploads/nios for working professionals.png
 author: The edYOUcate Team
 date: 2026-10-21
-category: NIOS
+category: Distance Learning
 tags: "Distance Learning vs Online Education in India: Which Should You Choose?,
   Secondary keywords\tdistance learning courses Surat, ODL admission guidance,
   distance degree Gujarat, UGC DEB verification"
