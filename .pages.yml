@@ -1,0 +1,112 @@
+# Pages CMS Configuration
+# Documentation: https://pagescms.org/docs/configuration
+
+media:
+  input: uploads
+  output: /uploads
+
+content:
+  - name: blog
+    label: Blog Posts
+    type: collection
+    path: content/blog
+    view:
+      fields: [title, category, date, status, featured]
+      primary: title
+      sort: [date, desc]
+      search: [title, description, category]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: The main headline of the article.
+
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+        description: URL-friendly identifier (e.g. nios-admission-guide). The published URL will match this slug.
+
+      - name: description
+        label: Short Description
+        type: text
+        required: true
+        description: 1-2 sentence summary displayed on homepage cards and search snippets.
+
+      - name: image
+        label: Featured Image
+        type: image
+        required: true
+        description: Main cover photo or banner (16:9 aspect ratio recommended).
+
+      - name: image_alt
+        label: Image Alt Text
+        type: string
+        description: Accessible description of the featured image for screen readers and SEO.
+
+      - name: author
+        label: Author
+        type: string
+        default: The edYOUcate Team
+        description: Name of the author or team.
+
+      - name: date
+        label: Publication Date
+        type: date
+        required: true
+        description: Date published (used for chronological sorting on homepage and archive).
+
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - NIOS
+            - Distance Learning
+        default: NIOS
+        required: true
+        description: Category where the article will be grouped.
+
+      - name: tags
+        label: Tags
+        type: list
+        description: Optional keywords or topics.
+
+      - name: featured
+        label: Featured Status
+        type: boolean
+        default: false
+        description: Toggle ON to feature this article prominently on the homepage.
+
+      - name: status
+        label: Publication Status
+        type: select
+        options:
+          values:
+            - published
+            - draft
+        default: published
+        required: true
+        description: Draft posts are saved in Git but excluded from the public site and sitemap.
+
+      - name: read_time
+        label: Estimated Read Time
+        type: string
+        default: 11 MIN READ
+        description: Read time display badge (e.g. "11 MIN READ").
+
+      - name: seo_title
+        label: SEO Title
+        type: string
+        description: Optional custom title tag for search engines (defaults to Title | edYOUcate).
+
+      - name: seo_description
+        label: SEO Meta Description
+        type: text
+        description: Optional custom meta description for search results (defaults to Short Description).
+
+      - name: body
+        label: Blog Content
+        type: rich-text
+        description: The complete article body with headings, paragraphs, bullet lists, bold text, links, and images.

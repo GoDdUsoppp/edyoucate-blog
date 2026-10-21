@@ -867,8 +867,8 @@ img {
 .featured-grid-layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.25rem;
-    margin-bottom: 3rem;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
     width: 100%;
     min-width: 0;
 }
@@ -897,11 +897,11 @@ img {
 }
 
 .featured-large-card .card-content h3 {
-    font-size: clamp(1.4rem, 3.2vw + 0.4rem, 2.35rem);
+    font-size: 1.35rem;
     font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.01em;
     overflow-wrap: break-word;
 }
 
@@ -911,44 +911,45 @@ img {
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.featured-large-card .card-content h3 a:hover {
+    color: var(--color-blue);
 }
 
 .featured-large-card .card-content p {
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
     line-height: 1.6;
 }
 
+/* On mobile/tablet (< 1025px), featured-list unwraps so all 4 cards share the exact same grid & size */
 .featured-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    width: 100%;
-    min-width: 0;
+    display: contents;
+}
+
+.list-divider {
+    display: none !important;
 }
 
 .small-list-card {
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
     min-width: 0;
 }
 
-.list-divider {
-    height: 1px;
-    background-color: var(--color-border);
-    width: 100%;
-}
-
 .small-card-image {
-    width: 125px;
-    aspect-ratio: 16/9;
-    height: auto;
-    flex-shrink: 0;
-    border-radius: var(--radius-sm);
+    position: relative;
+    border-radius: var(--radius-md);
     overflow: hidden;
+    margin-bottom: 1.25rem;
+    aspect-ratio: 16/9;
     box-shadow: var(--shadow-sm);
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .small-card-image img {
@@ -957,34 +958,32 @@ img {
     object-fit: cover;
 }
 
+.small-card-eyebrow {
+    display: none;
+}
+
 .small-card-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    flex: 1;
+    width: 100%;
     min-width: 0;
 }
 
-.small-card-eyebrow {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--color-blue);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
-}
-
 .small-card-content h4 {
-    font-size: 1.05rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--color-blue-dark);
-    margin-bottom: 0.35rem;
-    line-height: 1.35;
+    margin-bottom: 0.65rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
     overflow-wrap: break-word;
 }
 
 .small-card-content h4 a {
-    color: inherit;
+    color: var(--color-blue-dark);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
     transition: color 0.2s ease;
 }
 
@@ -992,7 +991,22 @@ img {
     color: var(--color-blue);
 }
 
-/* Featured Desktop Layout (>= 1025px) */
+.small-card-content p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+/* Featured Tablet Layout (641px to 1024px): 2-column grid of equal cards */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .featured-grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Featured Desktop Layout (>= 1025px): classic side-by-side editorial layout */
 @media (min-width: 1025px) {
     .featured-grid-layout {
         grid-template-columns: 1.15fr 1fr;
@@ -1000,38 +1014,75 @@ img {
         margin-bottom: 3.5rem;
     }
 
+    .featured-large-card .card-content h3 {
+        font-size: clamp(1.4rem, 3.2vw + 0.4rem, 2.35rem);
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
+    }
+
+    .featured-large-card .card-content p {
+        font-size: 0.95rem;
+        margin-bottom: 0.85rem;
+    }
+
     .featured-list {
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
         gap: 1.5rem;
         height: 100%;
     }
 
+    .list-divider {
+        display: block !important;
+        height: 1px;
+        background-color: var(--color-border);
+        width: 100%;
+    }
+
     .small-list-card {
+        flex-direction: row;
         gap: 1.5rem;
+        align-items: center;
     }
 
     .small-card-image {
         width: 240px;
         aspect-ratio: 16/9;
         height: auto;
+        border-radius: var(--radius-sm);
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .small-card-image .card-badge {
+        display: none;
+    }
+
+    .small-card-eyebrow {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--color-blue);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.25rem;
+    }
+
+    .small-card-content {
+        justify-content: center;
+        flex: 1;
     }
 
     .small-card-content h4 {
         font-size: 1.25rem;
+        line-height: 1.35;
         margin-bottom: 0.5rem;
     }
-}
 
-/* Featured Tablet Layout (641px to 1024px) */
-@media (min-width: 641px) and (max-width: 1024px) {
-    .small-card-image {
-        width: 180px;
-        aspect-ratio: 16/9;
-        height: auto;
-    }
-
-    .small-card-content h4 {
-        font-size: 1.15rem;
+    .small-card-content p {
+        display: none;
     }
 }
 
@@ -1163,7 +1214,8 @@ img {
     }
 
     .story-card:hover .arrow-icon,
-    .featured-large-card:hover .arrow-icon {
+    .featured-large-card:hover .arrow-icon,
+    .small-list-card:hover .arrow-icon {
         opacity: 1;
         transform: translate(0, 0);
     }
@@ -2057,16 +2109,7 @@ img {
         font-size: 1.75rem;
     }
 
-    .small-card-image {
-        width: 105px;
-        aspect-ratio: 16/9;
-        height: auto;
-    }
-
-    .small-card-content h4 {
-        font-size: 0.92rem;
-    }
-
+    .small-card-content h4,
     .card-content h3 {
         font-size: 1.2rem;
     }
