@@ -1,5 +1,5 @@
 ---
-title: "NIOS Admission in Surat: A Simple Guide for Students and "
+title: "NIOS Admission in Surat: A Simple Guide for Students and Parents"
 slug: nios-admission-surat-guide
 description: Understand NIOS admission in Surat, including eligibility,
   subjects, documents and practical planning tips for students and parents.
