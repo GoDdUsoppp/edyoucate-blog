@@ -192,12 +192,14 @@ foreach ($post in $posts) {
 }
 
 # 4. Update Homepage (index.html)
-$featuredLarge = $posts | Where-Object { $_["featured"] -eq $true } | Select-Object -First 1
-if (-not $featuredLarge) { $featuredLarge = $posts[0] }
-$sidePosts = $posts | Where-Object { $_["slug"] -ne $featuredLarge["slug"] } | Select-Object -First 3
-$sideSlugs = @($featuredLarge["slug"]) + ($sidePosts | ForEach-Object { $_["slug"] })
-$gridPosts = $posts | Where-Object { $_["slug"] -notin $sideSlugs }
-if ($gridPosts.Count -eq 0) { $gridPosts = $posts | Select-Object -Skip 1 -First 4 }
+# Strictly chronological newest-to-oldest pipeline:
+# - posts[0]: Newest post takes the big left card
+# - posts[1..3]: Next 3 posts move down through the right side list
+# - posts[4..end]: Oldest posts flow into the More Stories archive grid
+$featuredLarge = $posts[0]
+$sidePosts = $posts | Select-Object -Skip 1 -First 3
+$archivePosts = $posts | Select-Object -Skip 4
+$gridPosts = if ($archivePosts.Count -gt 0) { $archivePosts } else { $posts | Select-Object -Skip 1 -First 4 }
 
 $flCategory = $featuredLarge['category'].ToUpper()
 $flImg = [uri]::EscapeUriString($featuredLarge['image'])

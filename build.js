@@ -276,13 +276,13 @@ async function build() {
   }
 
   // 4. Update Homepage (index.html)
-  // Featured large card is the first post with featured: true, or the latest post
-  const featuredLarge = posts.find(p => p.featured) || posts[0];
-  const sidePosts = posts.filter(p => p.slug !== featuredLarge.slug).slice(0, 3);
-  const sideSlugs = new Set([featuredLarge.slug, ...sidePosts.map(p => p.slug)]);
-  const archivePosts = posts.filter(p => !sideSlugs.has(p.slug));
-
-  // If fewer than 4 archive posts, include remaining
+  // Strictly chronological newest-to-oldest pipeline:
+  // - posts[0]: Newest post takes the big left card
+  // - posts[1..3]: Next 3 posts move down through the right side list
+  // - posts[4..end]: Oldest posts flow into the More Stories archive grid
+  const featuredLarge = posts[0];
+  const sidePosts = posts.slice(1, 4);
+  const archivePosts = posts.slice(4);
   const gridPosts = archivePosts.length > 0 ? archivePosts : posts.slice(1, 5);
 
   const featuredLargeHtml = `
