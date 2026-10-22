@@ -820,6 +820,21 @@ Please connect with me with complete details, fee structure, and admission guida
 
             const waUrl = `https://wa.me/918866230077?text=${encodeURIComponent(waText)}`;
             
+            // Track lead event in Google Analytics and Meta Pixel
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', {
+                    service: serviceLabel,
+                    requirement: requirement,
+                    location: city
+                });
+            }
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', {
+                    content_name: serviceLabel,
+                    content_category: requirement
+                });
+            }
+
             // Open WhatsApp in new tab
             window.open(waUrl, '_blank');
 
