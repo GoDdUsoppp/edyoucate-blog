@@ -2484,7 +2484,7 @@ img {
     box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
     color: var(--color-text-main);
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -2498,18 +2498,16 @@ img {
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, #e60000 0%, #2563eb 50%, #10b981 100%);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    pointer-events: none;
+    z-index: 2;
 }
 
 @media (min-width: 480px) {
     .consultation-card {
         padding: 1.75rem 1.5rem 2rem;
         border-radius: 20px;
-    }
-    .consultation-card::before {
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
     }
 }
 
