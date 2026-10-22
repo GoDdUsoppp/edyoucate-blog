@@ -188,12 +188,11 @@ img {
     gap: 0.65rem;
     text-decoration: none;
     flex-shrink: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .site-logo-link:hover {
     opacity: 0.92;
-    transform: translateY(-1px);
 }
 
 .site-logo-img {
