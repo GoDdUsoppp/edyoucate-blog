@@ -110,7 +110,7 @@ If you are planning further studies after completing the required qualification,
 
 
 
-**Visit the [UGC-DEB official portal]([https://deb.ugc.ac.in/](https://deb.ugc.ac.in/)).
+Visit the [UGC-DEB official portal](https://deb.ugc.ac.in/).
 
 
 
