@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Open Schooling',
             label: 'Select Open Schooling Program',
             icon: '<i class="fa-solid fa-graduation-cap"></i>',
-            btnText: 'Get Open Schooling Guidance on WhatsApp',
+            btnText: 'Get Free Expert Counselling on WhatsApp',
             courses: [
                 { val: 'Class 10th (Secondary) Admission & Coaching', text: 'Class 10th (Secondary) Admission & Coaching' },
                 { val: 'Class 12th Senior Secondary (Science / Commerce / Arts)', text: 'Class 12th Senior Secondary (Science / Commerce / Arts)' },
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Online Distance',
             label: 'Select Degree / Course Level',
             icon: '<i class="fa-solid fa-building-columns"></i>',
-            btnText: 'Explore Distance Degrees on WhatsApp',
+            btnText: 'Get Free Expert Counselling on WhatsApp',
             courses: [
                 { val: "Bachelor's Degree (BBA / BCA / B.Com / BA / B.Sc)", text: "Bachelor's Degree (BBA / BCA / B.Com / BA / B.Sc)" },
                 { val: "Master's Degree (MBA / MCA / M.Com / MA / M.Sc)", text: "Master's Degree (MBA / MCA / M.Com / MA / M.Sc)" },
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Engineering and Medical Admission',
             label: 'Select Admission Stream / Quota',
             icon: '<i class="fa-solid fa-user-doctor"></i>',
-            btnText: 'Get Admission Guidance on WhatsApp',
+            btnText: 'Get Free Expert Counselling on WhatsApp',
             courses: [
                 { val: 'Engineering Admission (B.Tech / BE - Top Colleges)', text: 'Engineering Admission (B.Tech / BE - Top Colleges)' },
                 { val: 'Medical Admission (MBBS / BDS / BAMS / BHMS)', text: 'Medical Admission (MBBS / BDS / BAMS / BHMS)' },
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Career Counseling',
             label: 'Select Career Counseling Service',
             icon: '<i class="fa-solid fa-compass"></i>',
-            btnText: 'Book Free Career Counseling on WhatsApp',
+            btnText: 'Get Free Expert Counselling on WhatsApp',
             courses: [
                 { val: 'Post-10th Stream Selection Guidance', text: 'Post-10th Stream Selection Guidance' },
                 { val: 'Post-12th Career Path & College Selection', text: 'Post-12th Career Path & College Selection' },
@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'DMIT Report',
             label: 'Select DMIT Assessment Type',
             icon: '<i class="fa-solid fa-brain"></i>',
-            btnText: 'Book DMIT Test & Report on WhatsApp',
+            btnText: 'Get Free Expert Counselling on WhatsApp',
             courses: [
                 { val: 'Comprehensive DMIT Brain Mapping Analysis', text: 'Comprehensive DMIT Brain Mapping Analysis' },
                 { val: 'Multiple Intelligence & Learning Style Test', text: 'Multiple Intelligence & Learning Style Test' },
