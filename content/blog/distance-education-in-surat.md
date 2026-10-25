@@ -112,7 +112,7 @@ Typical application requirements can include identity proof, a recent photograph
 
                 
 
-If you are completing Class 12 through open schooling before choosing a degree, explore NIOS Class 10 and 12 guidance from edYOUcate. Admission eligibility and progression should be checked for your circumstances.
+If you are completing Class 12 through open schooling before choosing a degree, explore [NIOS Class 10 and 12 guidance from edYOUcate](https://www.edyoucate.in/). Admission eligibility and progression should be checked for your circumstances.
 
 
                 
@@ -137,7 +137,7 @@ Even when a degree is delivered remotely, students may appreciate a local person
 
                 
 
-Students who want to learn more about local counselling availability can view the edYOUcate Google Business Profile. Check the profile for current business information and directions.
+Students who want to learn more about local counselling availability can view the [edYOUcate Google Business Profile](https://share.google/dSKG1ySuB1ZYgrLEm). Check the profile for current business information and directions.
 
 
                 
@@ -157,7 +157,7 @@ Choosing an online or distance degree should begin with eligibility, recognition
 
                 
 
-Explore available counselling support and request help comparing recognised programmes at the edYOUcate Online & Distance Education website.
+Explore available counselling support and request help comparing recognised programmes at the [edYOUcate Online & Distance Education website](https://online.edyoucate.in/).
 
 
                 

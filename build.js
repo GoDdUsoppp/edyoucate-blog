@@ -199,6 +199,8 @@ async function build() {
 
     const ogTags = `
     <meta property="og:type" content="article">
+    <meta property="og:site_name" content="edYOUcate Blog">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:title" content="${seoTitle}">
     <meta property="og:description" content="${seoDesc}">
     <meta property="og:image" content="${ogImage}">

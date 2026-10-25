@@ -1603,6 +1603,21 @@ img {
     color: var(--color-text-main);
 }
 
+.story-text a {
+    color: var(--color-blue-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    font-weight: 600;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.story-text a:hover,
+.story-text a:focus {
+    color: #e60000;
+    text-decoration-color: #e60000;
+}
+
 .story-text h2 {
     font-size: clamp(1.4rem, 3vw + 0.4rem, 2rem);
     font-weight: 800;

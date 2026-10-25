@@ -132,7 +132,7 @@ edYOUcate provides independent educational counselling for students exploring NI
 
                 
 
-For local guidance, explore edYOUcate NIOS admission and counselling services. You can also find edYOUcate on Google Maps to view business information and directions.
+For local guidance, explore [edYOUcate NIOS admission and counselling services](https://www.edyoucate.in/). You can also [find edYOUcate on Google Maps](https://share.google/dSKG1ySuB1ZYgrLEm) to view business information and directions.
 
 
                 
@@ -167,7 +167,7 @@ edYOUcate - A Great Place For Education provides independent educational counsel
 
                 
 
-If you are planning further studies after completing the required qualification, explore online and distance degree guidance. Check each university and programme's current recognition and eligibility before applying.
+If you are planning further studies after completing the required qualification, explore [online and distance degree guidance](https://online.edyoucate.in/). Check each university and programme's current recognition and eligibility before applying.
 
 
                                 

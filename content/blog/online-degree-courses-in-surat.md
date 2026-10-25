@@ -127,7 +127,7 @@ Apply using the university's authorised process, save a copy of the application 
 
                 
 
-To discuss course fit, admission requirements and programme verification, visit edYOUcate Online Degree Counselling.
+To discuss course fit, admission requirements and programme verification, visit [edYOUcate Online Degree Counselling](https://online.edyoucate.in/).
 
 
                 
@@ -152,7 +152,7 @@ Choosing an online or distance degree should begin with eligibility, recognition
 
                 
 
-For local business information and directions, see the edYOUcate Surat Google Business Profile.
+For local business information and directions, see the [edYOUcate Surat Google Business Profile](https://share.google/dSKG1ySuB1ZYgrLEm).
 
 
                 

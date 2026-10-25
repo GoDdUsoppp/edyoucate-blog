@@ -147,7 +147,7 @@ edYOUcate helps students in Surat and surrounding South Gujarat areas understand
 
                 
 
-To discuss eligibility, specialisation preferences and total programme costs, use the edYOUcate Online MBA Counselling website.
+To discuss eligibility, specialisation preferences and total programme costs, use the [edYOUcate Online MBA Counselling website](https://online.edyoucate.in/).
 
 
                 
@@ -167,7 +167,7 @@ Choosing an online or distance degree should begin with eligibility, recognition
 
                 
 
-Students who prefer local assistance can also find edYOUcate's business information on Google Business Profile.
+Students who prefer local assistance can also find edYOUcate's business information on [Google Business Profile](https://share.google/dSKG1ySuB1ZYgrLEm).
 
 
                 

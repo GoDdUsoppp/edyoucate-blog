@@ -157,7 +157,7 @@ A missing listing is not always proof of fraud, because portal navigation and ca
 
                 
 
-For help understanding the verification steps-not as a substitute for checking UGC-DEB-visit edYOUcate Online & Distance Education Guidance.
+For help understanding the verification steps-not as a substitute for checking UGC-DEB-visit [edYOUcate Online & Distance Education Guidance](https://online.edyoucate.in/).
 
 
                 
@@ -182,7 +182,7 @@ Choosing an online or distance degree should begin with eligibility, recognition
 
                 
 
-If you would like to find edYOUcate's local office information, view the edYOUcate Google Business Profile.
+If you would like to find edYOUcate's local office information, view the [edYOUcate Google Business Profile](https://share.google/dSKG1ySuB1ZYgrLEm).
 
 
                 
