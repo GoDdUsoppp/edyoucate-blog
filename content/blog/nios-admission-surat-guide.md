@@ -110,6 +110,10 @@ If you are planning further studies after completing the required qualification,
 
 
 
+Visit the [UGC-DEB official portal](https://deb.ugc.ac.in/).
+
+
+
 ## Useful Official Resources
 
  **NIOS Official Website:** [https://nios.ac.in/](https://nios.ac.in/)
