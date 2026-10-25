@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e60000" />
+      <stop offset="100%" stop-color="#cc0000" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded Square Background -->
+  <rect width="64" height="64" rx="14" fill="url(#grad)" />
+  <!-- Mortarboard Diamond -->
+  <polygon points="32,15 54,25 32,35 10,25" fill="#ffffff" />
+  <!-- Skull Cap Base -->
+  <path d="M19,29.5 L19,39 C19,45.5 45,45.5 45,39 L45,29.5 L32,35.4 Z" fill="#ffffff" />
+  <!-- Tassel Cord & Bead -->
+  <path d="M49,27.5 L49,41" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+  <circle cx="49" cy="42" r="2.2" fill="#ffffff" />
+</svg>
