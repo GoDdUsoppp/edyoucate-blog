@@ -494,10 +494,11 @@ img {
 .hero-bg-img {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
     height: auto;
-    max-height: 380px;
-    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: center;
+    display: block;
     z-index: 0;
 }
 
@@ -608,47 +609,44 @@ img {
 
     .hero-image-wrapper {
         min-height: 520px;
-        display: flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: flex-end;
         border-radius: var(--radius-xl);
         border: none;
         box-shadow: var(--shadow-md);
-        position: relative;
+        display: flex;
+        padding: 0;
+        background: #f8fafc url('uploads/WhatsApp%20Image%202026-10-22%20at%2021.02.43.jpeg') right center / cover no-repeat;
     }
 
     .hero-bg-img {
         position: absolute;
         inset: 0;
-        width: 100%;
         height: 100%;
-        max-height: none;
-        object-fit: cover;
+        width: 100%;
+        object-fit: contain;
+        object-position: left center;
+        aspect-ratio: auto;
     }
 
     .hero-card {
         width: 50%;
         min-width: 380px;
         max-width: 680px;
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding: 3.5rem 3.5rem 3rem;
         border-left: 1px solid rgba(255, 255, 255, 0.6);
         border-top: none;
-        position: relative;
-        z-index: 1;
+        margin-top: 0;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .badge {
         margin-bottom: 1.5rem;
-    }
-
-    .hero-card h1 {
-        font-size: clamp(1.85rem, 5vw + 0.6rem, 3.75rem);
-        line-height: 1.15;
-        margin-bottom: 0.85rem;
     }
 
     .hero-card p {
@@ -669,16 +667,6 @@ img {
 
 /* Hero Tablet View (769px to 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-    .hero-bg-img {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-        height: auto;
-    }
-
-    .hero-card {
-        padding: 2.5rem 2rem;
-    }
-
     .hero-card-footer {
         flex-direction: row;
         justify-content: space-between;
@@ -687,6 +675,17 @@ img {
 
     .btn-dark {
         width: auto;
+    }
+
+    .hero-bg-img {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    .hero-card {
+        padding: 2.5rem 2rem;
     }
 }
 
