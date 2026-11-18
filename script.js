@@ -113,104 +113,228 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================================
-    // 3. Homepage Filter Tabs & Real-time Search
+    // 3. Homepage Filter Tabs, Real-time Search & Layout-Preserving Pagination
     // =========================================================================
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const allStories = document.querySelectorAll('.featured-large-card, .small-list-card, .story-card');
-    const searchBtn = document.getElementById('searchToggleBtn') || document.querySelector('.search-btn');
-    const searchInputContainer = document.getElementById('searchInputContainer');
-    const searchInput = document.getElementById('storySearchInput');
-    const searchClearBtn = document.getElementById('searchClearBtn');
+    const postsDataEl = document.getElementById('allPostsData');
+    if (postsDataEl) {
+        let allPosts = [];
+        try {
+            allPosts = JSON.parse(postsDataEl.textContent.trim());
+        } catch (e) {
+            console.error('Failed to parse allPostsData:', e);
+        }
 
-    let currentCategoryFilter = 'ALL STORIES';
-    let currentSearchQuery = '';
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const featuredGridLayout = document.getElementById('featuredGridLayout');
+        const storiesGrid = document.getElementById('storiesGrid') || document.querySelector('.stories-grid');
+        const archiveCountEl = document.getElementById('archiveCountMeta');
+        const viewMoreBtn = document.getElementById('viewMoreStoriesBtn');
+        const viewMoreContainer = document.getElementById('viewMoreContainer');
+        const searchBtn = document.getElementById('searchToggleBtn') || document.querySelector('.search-btn');
+        const searchInputContainer = document.getElementById('searchInputContainer');
+        const searchInput = document.getElementById('storySearchInput');
+        const searchClearBtn = document.getElementById('searchClearBtn');
 
-    function filterStories() {
-        let matchCount = 0;
-        allStories.forEach(story => {
-            const badge = story.querySelector('.card-badge, .small-card-eyebrow');
-            const title = story.querySelector('h3, h4');
-            const excerpt = story.querySelector('p');
+        let currentCategoryFilter = 'ALL STORIES';
+        let currentSearchQuery = '';
 
-            const categoryText = badge ? badge.textContent.trim().toUpperCase() : '';
-            const titleText = title ? title.textContent.trim().toLowerCase() : '';
-            const excerptText = excerpt ? excerpt.textContent.trim().toLowerCase() : '';
+        // 3 rows on desktop grid (3 columns x 3 rows = 9 blogs)
+        const GRID_PAGE_SIZE = 9;
+        let visibleGridLimit = GRID_PAGE_SIZE;
 
-            const matchesCategory = (currentCategoryFilter === 'ALL STORIES' || categoryText.includes(currentCategoryFilter));
-            const matchesSearch = (!currentSearchQuery || titleText.includes(currentSearchQuery) || excerptText.includes(currentSearchQuery));
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
 
-            if (matchesCategory && matchesSearch) {
-                story.style.display = '';
-                matchCount++;
-            } else {
-                story.style.display = 'none';
-            }
-        });
+        function createLargeCardHtml(post) {
+            const encodedImg = encodeURI(post.image);
+            const category = (post.category || '').toUpperCase();
+            return `
+                <article class="featured-large-card">
+                    <div class="card-image">
+                        <div class="card-badge">${escapeHtml(category)}</div>
+                        <img src="${encodedImg}" alt="${escapeHtml(post.image_alt || post.title)}">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="${post.slug}.html">${escapeHtml(post.title)} <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></h3>
+                        <p>${escapeHtml(post.description)}</p>
+                        <div class="card-meta">${post.date} &nbsp;&bull;&nbsp; ${post.read_time || '11 MIN READ'}</div>
+                    </div>
+                </article>`;
+        }
 
-        // Hide/show dividers if adjacent cards are hidden
-        const dividers = document.querySelectorAll('.list-divider');
-        dividers.forEach(div => {
-            const prev = div.previousElementSibling;
-            const next = div.nextElementSibling;
-            if (prev && prev.style.display === 'none' && next && next.style.display === 'none') {
-                div.style.display = 'none';
-            } else {
-                div.style.display = '';
-            }
-        });
-    }
+        function createSidePostsHtml(posts) {
+            return posts.map((post, idx) => `
+                <article class="small-list-card">
+                    <div class="small-card-image">
+                        <div class="card-badge">${escapeHtml((post.category || '').toUpperCase())}</div>
+                        <img src="${encodeURI(post.image)}" alt="${escapeHtml(post.image_alt || post.title)}">
+                    </div>
+                    <div class="small-card-content">
+                        <span class="small-card-eyebrow">${escapeHtml((post.category || '').toUpperCase())}</span>
+                        <h4><a href="${post.slug}.html">${escapeHtml(post.title)} <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></h4>
+                        <p>${escapeHtml(post.description)}</p>
+                        <div class="card-meta">${post.date} &nbsp;&bull;&nbsp; ${post.read_time || '11 MIN READ'}</div>
+                    </div>
+                </article>${idx < posts.length - 1 ? '\n\n                    <div class="list-divider"></div>' : ''}`).join('\n');
+        }
 
-    if (filterBtns.length > 0) {
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentCategoryFilter = btn.textContent.trim().toUpperCase();
-                filterStories();
-            });
-        });
-    }
+        function createGridPostHtml(post) {
+            return `
+                <article class="story-card">
+                    <div class="card-image">
+                        <div class="card-badge">${escapeHtml((post.category || '').toUpperCase())}</div>
+                        <img src="${encodeURI(post.image)}" alt="${escapeHtml(post.image_alt || post.title)}">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="${post.slug}.html">${escapeHtml(post.title)} <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></h3>
+                        <p>${escapeHtml(post.description)}</p>
+                        <div class="card-meta">${post.date} &nbsp;&bull;&nbsp; ${post.read_time || '11 MIN READ'}</div>
+                    </div>
+                </article>`;
+        }
 
-    // Search Toggle & Live Input
-    if (searchBtn && searchInputContainer) {
-        searchBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = searchInputContainer.classList.toggle('open');
-            searchBtn.classList.toggle('active', isOpen);
-            if (isOpen && searchInput) {
-                searchInput.focus();
-            }
-        });
+        function renderFilteredView() {
+            if (!allPosts || allPosts.length === 0) return;
 
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                currentSearchQuery = e.target.value.trim().toLowerCase();
-                if (searchClearBtn) {
-                    searchClearBtn.style.display = currentSearchQuery ? 'inline-block' : 'none';
+            const matching = allPosts.filter(post => {
+                const cat = (post.category || '').toUpperCase();
+                let matchesCat = true;
+                if (currentCategoryFilter === 'NIOS') {
+                    matchesCat = cat.includes('NIOS');
+                } else if (currentCategoryFilter === 'DISTANCE LEARNING') {
+                    matchesCat = cat.includes('DISTANCE');
                 }
-                filterStories();
+
+                const title = (post.title || '').toLowerCase();
+                const desc = (post.description || '').toLowerCase();
+                const matchesSearch = (!currentSearchQuery || title.includes(currentSearchQuery) || desc.includes(currentSearchQuery));
+
+                return matchesCat && matchesSearch;
+            });
+
+            // 1. Featured Section (Preserves layout on any filter)
+            if (matching.length === 0) {
+                if (featuredGridLayout) featuredGridLayout.style.display = 'none';
+                if (storiesGrid) {
+                    storiesGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--color-text-muted);">
+                            <p style="font-size: 1.1rem; font-weight: 500;">No stories found matching your selection.</p>
+                        </div>`;
+                }
+                if (archiveCountEl) archiveCountEl.textContent = 'THE ARCHIVE / 0';
+                if (viewMoreContainer) viewMoreContainer.style.display = 'none';
+                return;
+            }
+
+            if (featuredGridLayout) {
+                featuredGridLayout.style.display = '';
+                const featuredLargePost = matching[0];
+                const sidePosts = matching.slice(1, 4);
+
+                let largeHtml = createLargeCardHtml(featuredLargePost);
+                let sideHtml = '';
+                if (sidePosts.length > 0) {
+                    sideHtml = `
+                        <div class="featured-list" id="featuredList">
+                            ${createSidePostsHtml(sidePosts)}
+                        </div>`;
+                }
+                featuredGridLayout.innerHTML = largeHtml + sideHtml;
+            }
+
+            // 2. More Stories Grid
+            const gridPosts = matching.slice(4);
+            if (archiveCountEl) {
+                archiveCountEl.textContent = `THE ARCHIVE / ${matching.length}`;
+            }
+
+            if (storiesGrid) {
+                const visibleInGrid = gridPosts.slice(0, visibleGridLimit);
+                storiesGrid.innerHTML = visibleInGrid.map(createGridPostHtml).join('\n');
+            }
+
+            // 3. View More Button
+            if (viewMoreContainer) {
+                if (gridPosts.length > visibleGridLimit) {
+                    viewMoreContainer.style.display = 'flex';
+                } else {
+                    viewMoreContainer.style.display = 'none';
+                }
+            }
+        }
+
+        // View More Button
+        if (viewMoreBtn) {
+            viewMoreBtn.addEventListener('click', () => {
+                visibleGridLimit += GRID_PAGE_SIZE;
+                renderFilteredView();
             });
         }
 
-        if (searchClearBtn && searchInput) {
-            searchClearBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                currentSearchQuery = '';
-                searchClearBtn.style.display = 'none';
-                filterStories();
-                searchInput.focus();
+        // Category Filter Buttons
+        if (filterBtns.length > 0) {
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategoryFilter = btn.textContent.trim().toUpperCase();
+                    visibleGridLimit = GRID_PAGE_SIZE; // Reset to 3 rows
+                    renderFilteredView();
+                });
             });
         }
 
-        // Close search input if clicked outside
-        document.addEventListener('click', (e) => {
-            if (!searchInputContainer.contains(e.target) && !searchBtn.contains(e.target)) {
-                if (!searchInput.value.trim()) {
-                    searchInputContainer.classList.remove('open');
-                    searchBtn.classList.remove('active');
+        // Search Toggle & Live Input
+        if (searchBtn && searchInputContainer) {
+            searchBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = searchInputContainer.classList.toggle('open');
+                searchBtn.classList.toggle('active', isOpen);
+                if (isOpen && searchInput) {
+                    searchInput.focus();
                 }
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    currentSearchQuery = e.target.value.trim().toLowerCase();
+                    if (searchClearBtn) {
+                        searchClearBtn.style.display = currentSearchQuery ? 'inline-block' : 'none';
+                    }
+                    visibleGridLimit = GRID_PAGE_SIZE; // Reset to 3 rows
+                    renderFilteredView();
+                });
             }
-        });
+
+            if (searchClearBtn && searchInput) {
+                searchClearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    currentSearchQuery = '';
+                    searchClearBtn.style.display = 'none';
+                    visibleGridLimit = GRID_PAGE_SIZE;
+                    renderFilteredView();
+                    searchInput.focus();
+                });
+            }
+
+            document.addEventListener('click', (e) => {
+                if (!searchInputContainer.contains(e.target) && !searchBtn.contains(e.target)) {
+                    if (!searchInput.value.trim()) {
+                        searchInputContainer.classList.remove('open');
+                        searchBtn.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        // Initial run to ensure grid pagination starts at 3 rows
+        renderFilteredView();
     }
 
     // =========================================================================

@@ -327,11 +327,23 @@ async function build() {
                     </div>
                 </article>`).join('\n');
 
+  const postsJson = JSON.stringify(posts.map(p => ({
+    title: p.title,
+    slug: p.slug,
+    description: p.description,
+    image: p.image,
+    image_alt: p.image_alt || p.title,
+    category: p.category,
+    date: formatDate(p.date),
+    read_time: p.read_time || '11 MIN READ'
+  })));
+
   let updatedIndex = indexTpl
     .replace('<!-- INJECT:FEATURED_LARGE -->', featuredLargeHtml)
     .replace('<!-- INJECT:FEATURED_LIST -->', sidePostsHtml)
     .replace('<!-- INJECT:STORIES_GRID -->', gridPostsHtml)
-    .replace('<!-- INJECT:ARCHIVE_COUNT -->', posts.length.toString());
+    .replace('<!-- INJECT:ARCHIVE_COUNT -->', posts.length.toString())
+    .replace('<!-- INJECT:POSTS_JSON -->', postsJson);
 
   fs.writeFileSync(path.join(__dirname, 'index.html'), updatedIndex, 'utf-8');
   console.log('✅ Generated homepage: index.html');

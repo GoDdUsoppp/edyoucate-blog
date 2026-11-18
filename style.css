@@ -1242,6 +1242,55 @@ img {
 }
 
 /* ==========================================================================
+   View More Stories Button
+   ========================================================================== */
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.75rem;
+    width: 100%;
+}
+
+.view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.85rem 2.25rem;
+    background-color: #ffffff;
+    color: var(--color-blue-dark);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+}
+
+.view-more-btn:hover {
+    background-color: var(--color-blue);
+    color: #ffffff;
+    border-color: var(--color-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.view-more-btn:active {
+    transform: translateY(0);
+}
+
+.view-more-icon {
+    transition: transform 0.25s ease;
+}
+
+.view-more-btn:hover .view-more-icon {
+    transform: translateY(2px);
+}
+
+/* ==========================================================================
    Reminder Banner - Mobile First
    ========================================================================== */
 .reminder-banner {

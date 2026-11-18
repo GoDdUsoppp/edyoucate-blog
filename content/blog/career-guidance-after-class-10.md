@@ -6,7 +6,7 @@ image: "NIOS Photos/career guidance after class 10.jpg"
 image_alt: "Career Guidance After Class 10: How to Choose the Right Stream"
 author: "The edYOUcate Team"
 date: "2026-10-25"
-category: "Career Guidance"
+category: "Distance Learning"
 featured: false
 status: "published"
 read_time: "12 MIN READ"

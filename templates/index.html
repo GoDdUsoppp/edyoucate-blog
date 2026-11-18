@@ -199,7 +199,6 @@
                     <button class="filter-btn active" type="button">ALL STORIES</button>
                     <button class="filter-btn" type="button">NIOS</button>
                     <button class="filter-btn" type="button">Distance Learning</button>
-                    <button class="filter-btn" type="button">Career Guidance</button>
                 </div>
                 <div class="search-box-wrapper">
                     <button class="search-btn" id="searchToggleBtn" aria-label="Search articles" type="button">
@@ -212,12 +211,12 @@
                 </div>
             </div>
 
-            <div class="featured-grid-layout">
+            <div class="featured-grid-layout" id="featuredGridLayout">
                 <!-- Large Story (Left) -->
 <!-- INJECT:FEATURED_LARGE -->
                 
                 <!-- Small Stories (Right) -->
-                <div class="featured-list">
+                <div class="featured-list" id="featuredList">
 <!-- INJECT:FEATURED_LIST -->
                 </div>
             </div>
@@ -232,13 +231,20 @@
                     <span class="eyebrow">KEEP EXPLORING &darr;</span>
                     <h2>MORE STORIES<span class="highlight-blue">.</span></h2>
                 </div>
-                <div class="section-meta">
+                <div class="section-meta" id="archiveCountMeta">
                     THE ARCHIVE / <!-- INJECT:ARCHIVE_COUNT -->
                 </div>
             </div>
 
-            <div class="stories-grid">
+            <div class="stories-grid" id="storiesGrid">
 <!-- INJECT:STORIES_GRID -->
+            </div>
+
+            <div class="view-more-container" id="viewMoreContainer">
+                <button type="button" class="view-more-btn" id="viewMoreStoriesBtn">
+                    <span>VIEW MORE STORIES</span>
+                    <svg class="view-more-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -2042,6 +2048,9 @@
         </div>
     </footer>
 
+    <script id="allPostsData" type="application/json">
+<!-- INJECT:POSTS_JSON -->
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
