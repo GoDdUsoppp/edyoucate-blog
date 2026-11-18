@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < storyHeadings.length; i++) {
                 const heading = storyHeadings[i];
                 const rect = heading.getBoundingClientRect();
-                
+
                 // If heading is above or at the target line, it is candidate for active
                 if (rect.top <= targetActivationY) {
                     currentActiveHeading = heading;
@@ -919,8 +919,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const serviceKey = serviceSelect ? serviceSelect.value : 'open_schooling';
             const meta = businessMeta[serviceKey] || businessMeta['open_schooling'];
             const serviceLabel = meta.name;
-            const requirement = requirementSelect && requirementSelect.value 
-                ? requirementSelect.value 
+            const requirement = requirementSelect && requirementSelect.value
+                ? requirementSelect.value
                 : 'General Inquiry';
             const city = cityInput && cityInput.value.trim() ? cityInput.value.trim() : 'Surat';
 
@@ -930,8 +930,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Construct crisp, professionally formatted WhatsApp message
-            const waText = 
-`👋 *Hello EDYOUCATE Team!*
+            const waText =
+                `👋 *Hello EDYOUCATE Team!*
 I would like a consultation from your blog:
 
 👤 *Full Name:* ${name}
@@ -943,7 +943,7 @@ I would like a consultation from your blog:
 Please connect with me with complete details, fee structure, and admission guidance. Thank you!`;
 
             const waUrl = `https://wa.me/918866230077?text=${encodeURIComponent(waText)}`;
-            
+
             // Track lead event in Google Analytics and Meta Pixel
             if (typeof gtag === 'function') {
                 gtag('event', 'generate_lead', {
